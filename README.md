@@ -30,4 +30,4 @@ then, run `npm start` to play the game
 
 ## Dev Notes:
 
-TODO: Add debounce affect on redraw on resizes as the DOM is getting crushed
+Added debounce affect on redraw on resizes as the DOM is getting crushed
