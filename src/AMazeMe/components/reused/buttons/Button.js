@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import ButtonOrb from "./ButtonOrb";
 
-export default ({ className, onClick, children }) => {
+export default ({ className, onClick, disabled,children }) => {
   const [buttonInfo, setButtonInfo] = useState({ height: 0, width: 0 });
   const { height, width } = buttonInfo;
   return (
     <Button
       className={className}
+			disabled = {disabled}
       onMouseEnter={({ target }) => {
         setButtonInfo({
           height: target.getBoundingClientRect().height,
