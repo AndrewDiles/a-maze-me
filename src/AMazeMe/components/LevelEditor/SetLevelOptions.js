@@ -23,7 +23,7 @@ export default ({ tilesOnRight }) => {
       ? JSON.parse(savedLevel)
       : JSON.parse(JSON.stringify(defaultCustomLevelState));
     setLevel(newLevel);
-    setDraw(true);
+    setDraw(Date.now());
   }, []);
 
   return (

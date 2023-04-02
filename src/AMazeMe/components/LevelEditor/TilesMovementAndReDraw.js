@@ -4,9 +4,9 @@ import styled from "styled-components";
 import Button from "../reused/buttons/Button";
 
 export default ({ tilesOnRight, setTilesOnRight }) => {
-	const { setDraw } = useContext(LevelContext);
+  const { setDraw } = useContext(LevelContext);
   return (
-    <Container tilesOnRight = {tilesOnRight}>
+    <Container tilesOnRight={tilesOnRight}>
       <Button
         onClick={() => {
           setTilesOnRight(!tilesOnRight);
@@ -14,9 +14,9 @@ export default ({ tilesOnRight, setTilesOnRight }) => {
       >
         {tilesOnRight ? "move tiles above" : "move tiles aside"}
       </Button>
-			<Button
+      <Button
         onClick={() => {
-          setDraw((draw) => !draw);
+          setDraw(Date.now());
         }}
       >
         re-draw
@@ -26,8 +26,8 @@ export default ({ tilesOnRight, setTilesOnRight }) => {
 };
 
 const Container = styled.section`
-	margin-bottom: ${({tilesOnRight}) => tilesOnRight && "0"};
-	& button {
-		margin: 0.5em 1em;
-	}
+  margin-bottom: ${({ tilesOnRight }) => tilesOnRight && "0"};
+  & button {
+    margin: 0.5em 1em;
+  }
 `;
