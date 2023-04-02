@@ -6,7 +6,7 @@ const useStaggerDraw = (draw, setDraw) => {
   useEffect(() => {
     if (!staggerDraw) return;
     const timeout = setTimeout(() => {
-      setDraw(true);
+      setDraw(Date.now())
       setStaggerDraw(false);
     }, 300);
     return () => {
