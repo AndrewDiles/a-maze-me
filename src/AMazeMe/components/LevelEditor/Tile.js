@@ -26,7 +26,7 @@ export default ({ selectedCell, borderKey, tilesOnRight }) => {
           }
         }
         setLevel({ ...level, layout: replacementLayout });
-        setDraw(true);
+        setDraw(Date.now());
       }}
     >
       <TileCanvas borderKey={borderKey} tilesOnRight={tilesOnRight}/>

@@ -5,8 +5,8 @@ import LevelContext from "../../contexts/LevelContext";
 import createNumberedArray from "../../helpers/createNumberedArray";
 
 export default ({ selectedCell, setSelectedCell }) => {
-  const { level, dimensions, draw, setDraw } = useContext(LevelContext);
-  const { name, rows, cols, layout, borderColor, floorColor } = level;
+  const { level, dimensions } = useContext(LevelContext);
+  const { rows, cols } = level;
   const { size } = dimensions;
   const rowArray = createNumberedArray(rows);
   const colArray = createNumberedArray(cols);

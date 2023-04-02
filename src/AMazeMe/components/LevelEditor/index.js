@@ -49,7 +49,7 @@ export default () => {
   useEffect(() => {
     setDraw(false);
     const timer = setTimeout(() => {
-      setDraw(true);
+      setDraw(Date.now());
     }, 250);
     return () => {
       clearTimeout(timer);

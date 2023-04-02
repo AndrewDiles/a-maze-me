@@ -10,10 +10,10 @@ html {
     --color-text: #e0fdf5;
     --color-bg: #0f0961;
     --color-h: #38fff9;
-		--color-f: lime;
+		--color-f: #00FF00; // lime
 		--color-a: #078aff;
 		--color-border: #900779;
-		--color-accent: magenta;
+		--color-accent: #FF00FF; // magenta
 
   }
   body {
