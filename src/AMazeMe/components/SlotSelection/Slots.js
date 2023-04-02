@@ -21,7 +21,7 @@ const Container = styled.section`
   * {
     text-align: center;
   }
-  button {
+  & > button {
     width: fit-content;
     align-self: center;
     margin-bottom: 1em;
