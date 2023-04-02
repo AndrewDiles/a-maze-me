@@ -1,11 +1,14 @@
 import { useState, useContext } from "react";
 import RecordsContext from "../../contexts/RecordsContext";
+import RecordDisplay from "./RecordDisplay";
 import SelectionIndicator from "./SelectionIndicator";
 import WorldTile from "./WorldTile";
 
 import Header from "../reused/Header";
 import styled from "styled-components";
+import PlayButton from "../reused/buttons/PlayButton";
 import ReturnToMenu from "../reused/buttons/ReturnToMenu";
+import findRecordsAndUnlocked from "../../helpers/findRecordsAndUnlocked";
 
 const maxWorldIndex = 1;
 const worldArray = [];
@@ -20,11 +23,15 @@ export default () => {
     const levelIndex = selectedRecords[worldIndex].length;
     return { worldIndex, levelIndex };
   });
+	
+
+	const {records, unlocked} = findRecordsAndUnlocked({selectedRecords, selection})
 
   return (
     <Container>
       <Header>select level</Header>
-			
+			<RecordDisplay records= {records} unlocked={unlocked}/>
+			<PlayButton worldToPlay = {selection.worldIndex} levelToPlay={selection.levelIndex} disabled={!unlocked}/>
 			<SelectionIndicator world ={selection.worldIndex + 1} level = {selection.levelIndex +1}/>
       <WorldsContainer>
         {worldArray.map((worldNumber) => (
@@ -47,7 +54,7 @@ const Container = styled.section`
   * {
     text-align: center;
   }
-  button {
+  & > button {
     width: fit-content;
     align-self: center;
     margin-bottom: 1em;

@@ -18,6 +18,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   p {
-    margin: 0.5em 1em;
+    margin: 0 1em .5em;
   }
 `;

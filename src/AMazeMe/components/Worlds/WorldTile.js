@@ -1,5 +1,8 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import LockedLevel from "./LockedLevel";
 import Level from "./Level";
+import RecordsContext from "../../contexts/RecordsContext";
 
 const calcTransX = (diff) => {
   // f(d) = (125/2|d| - 75, -5d - 10)
@@ -9,32 +12,62 @@ const calcTransX = (diff) => {
   return `${x}%, ${y}%`;
 };
 
+const produceLevelArray = () => {
+  const result = [];
+  let i = 1;
+  while (i < 10) {
+    result.push(i);
+    i++;
+  }
+  return result;
+};
+
 export default ({ worldNumber, selection, setSelection }) => {
+  const { selectedRecords } = useContext(RecordsContext);
   const selected = selection.worldIndex === worldNumber;
   console.log(selected);
   const differenceFromSelected = selection.worldIndex - worldNumber;
   // if 0, is selected, transX should be -50%, z-index should be 100
   // if > 0, should be on left
   // if < 0, should be on right
+  const worldUnlocked = selectedRecords.length > worldNumber;
+  console.log({ worldNumber }, worldUnlocked);
   return (
     <Tile
       onClick={() => {
         setSelection({ levelIndex: 0, worldIndex: worldNumber });
       }}
+      worldUnlocked={worldUnlocked}
       selected={selected}
       zIndex={100 - Math.abs(differenceFromSelected) * 5}
       trans={calcTransX(differenceFromSelected)}
     >
-      {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((levelNumber) => (
-        <Level
-					worldSelected = {selected}
-          disabled={differenceFromSelected !== 0}
-          selected={levelNumber === selection.levelIndex + 1}
-          selection={selection}
-          setSelection={setSelection}
-          levelNumber={levelNumber}
-        />
-      ))}
+      {worldUnlocked ? (
+        produceLevelArray().map((levelNumber) => {
+          const progressArray = selectedRecords[selection.worldIndex];
+          const unlocked = progressArray
+            ? levelNumber === 1
+              ? true
+              : progressArray[levelNumber - 1]
+              ? true
+              : false
+            : false;
+          return (
+            <Level
+              key={levelNumber}
+              worldSelected={selected}
+              disabled={differenceFromSelected !== 0}
+              selected={levelNumber === selection.levelIndex + 1}
+              selection={selection}
+              setSelection={setSelection}
+              levelNumber={levelNumber}
+              unlocked={unlocked}
+            />
+          );
+        })
+      ) : (
+        <LockedLevel worldNumber={worldNumber} />
+      )}
     </Tile>
   );
 };
@@ -44,7 +77,7 @@ const Tile = styled.div`
   border: 0.5em
     var(${({ selected }) => (selected ? "--color-a" : "--color-border")}) double;
   border-radius: 1em;
-  display: grid;
+  display: ${({ worldUnlocked }) => (worldUnlocked ? "grid" : "flex")};
   grid-template-columns: repeat(3, 1fr);
   z-index: ${({ zIndex }) => zIndex};
   transition-duration: 0.75s;
