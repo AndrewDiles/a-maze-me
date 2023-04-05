@@ -11,7 +11,7 @@ const MemoedCanvas = React.memo(({ borderKey, tilesOnRight }) => {
   const canvas = useRef(null);
 
   useEffect(() => {
-    console.log("drawing");
+    // console.log("drawing");
     borders[borderKey]({
       c: canvas.current,
       x: 0,

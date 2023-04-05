@@ -3,7 +3,6 @@ import Header from "../reused/Header";
 import styled from "styled-components";
 
 export default () => {
-  console.log("records", Header);
   return (
     <Container>
       <Header>records</Header>
