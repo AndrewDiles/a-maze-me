@@ -21,6 +21,9 @@ export default () => {
     case "maze": {
       return <Maze />;
     }
+		case "custom":{
+			return <h1>BUILD CUSTOM MAZE ACCESS / GEN</h1>
+		}
     case "editor": {
       return game.subView === "import" ? <ImportCustom /> : <LevelEditor />;
     }
