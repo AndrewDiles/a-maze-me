@@ -14,6 +14,24 @@ const defaultState = {
 	...worldColors
 };
 
+const removeTargetLettersFromLayout = (layout, ...letters) => {
+	const newLayout = [];
+	layout.forEach((rowString)=>{
+		let newRowString = ""
+		for(let i = 0; i < rowString.length; i++) {
+			const current = rowString[i];
+			if (letters.some(letter => current === letter)) {
+				newRowString+="0"
+			} else {
+				newRowString += current
+			}
+		}
+		newLayout.push(newRowString)
+	})
+	return newLayout
+}
+
+
 export const LevelProvider = ({ children }) => {
   const [level, setLevel] = useState({ ...defaultState });
   const [dimensions, setDimensions] = useState({ x: 320, y: 320, size: 40 });
@@ -39,9 +57,35 @@ export const LevelProvider = ({ children }) => {
     return () => window.removeEventListener("resize", manageDimensions);
   }, [level.rows, level.cols]);
 
+	const unlockKey1 = () => {
+		// const newLayout = [];
+		// level.layout.forEach((rowString)=>{
+		// 	let newRowString = ""
+		// 	for(let i = 0; i < rowString.length; i++) {
+		// 		const current = rowString[i];
+		// 		if (current === "p" || current === "q" || current === "r" || current === "s" || current === "t") {
+		// 			newRowString+="0"
+		// 		} else {
+		// 			newRowString += current
+		// 		}
+		// 	}
+		// 	newLayout.push(newRowString)
+		// })
+		const newLayout = removeTargetLettersFromLayout(level.layout, "p", "q", "r", "s", "t")
+		setLevel({...level, layout: newLayout})
+	}
+	const unlockKey2 = () => {
+		const newLayout = removeTargetLettersFromLayout(level.layout, "u", "v", "w", "x", "y")
+		setLevel({...level, layout: newLayout})
+	}
+	const unlockKey3 = () => {
+		const newLayout = removeTargetLettersFromLayout(level.layout, "U", "V", "W", "X", "Y")
+		setLevel({...level, layout: newLayout})
+	}
+
   return (
     <LevelContext.Provider
-      value={{ level, setLevel, draw, setDraw, dimensions }}
+      value={{ level, setLevel, draw, setDraw, dimensions, unlockKey1, unlockKey2, unlockKey3 }}
     >
       {children}
     </LevelContext.Provider>
