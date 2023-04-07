@@ -1,33 +1,8 @@
 import { CELL_UNIT_SIZE, BOUNCE_MAGNITUDE } from "../constants/general";
 import generateCellArray from "./generateCellArray";
 import cellArrayIsNotEmpty from "./cellArrayIsNotEmpty";
+import {bounceRightIfApplicable, bounceLeftIfApplicable, bounceUpIfApplicable, bounceDownIfApplicable} from "./bounceHelpers";
 
-console.log(BOUNCE_MAGNITUDE);
-
-const bounceRightIfApplicable = ({ bounced, newPlayerObject, x }) => {
-  if (!bounced.x && x < 0) {
-    bounced.x = true;
-    newPlayerObject.x += BOUNCE_MAGNITUDE;
-  }
-};
-const bounceLeftIfApplicable = ({ bounced, newPlayerObject, x }) => {
-  if (!bounced.x && x > 0) {
-    bounced.x = true;
-    newPlayerObject.x -= BOUNCE_MAGNITUDE;
-  }
-};
-const bounceUpIfApplicable = ({ bounced, newPlayerObject, y }) => {
-  if (!bounced.y && y > 0) {
-    bounced.y = true;
-    newPlayerObject.y -= BOUNCE_MAGNITUDE;
-  }
-};
-const bounceDownIfApplicable = ({ bounced, newPlayerObject, y }) => {
-  if (!bounced.y && y < 0) {
-    bounced.y = true;
-    newPlayerObject.y += BOUNCE_MAGNITUDE;
-  }
-};
 const addToCollisionsOrReturnTrue = ({ letter, collisions }) => {
   //TODO: add enemy letters in here
   if (letter === "Z") {
@@ -51,6 +26,7 @@ const debugBROff = false;
 // this is just a warning logger.  This should never be seen in prod
 if (debugTLOff || debugTROff || debugBLOff || debugBROff) console.log('%c WARNING COLLISION DEBUGGER ACTIVE ', 'background: black; color: red; padding: 10px; font-weight: 900; font-size: 2em;');
 
+// TL collisions - can only bounce down or right
 const testTLCollisions = ({pos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y}) => {
 
 	if (!debugTLOff && pos.row > -1 && pos.col > -1) {
@@ -103,6 +79,7 @@ const testTLCollisions = ({pos, collisions, bounced, newPlayerObject, getCellFro
 
 }
 
+// TR collisions - can only bounce down or left
 const testTRCollisions = ({pos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y, maxCols}) => {
 	if (!debugTROff && pos.col < maxCols && pos.row > -1) {
     // console.log("TR in bounds")
@@ -154,6 +131,7 @@ const testTRCollisions = ({pos, collisions, bounced, newPlayerObject, getCellFro
   }
 }
 
+// BL collisions - can only bounce up or right
 const testBLCollisions = ({pos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y, maxRows}) => {
 	if (!debugBLOff && pos.row < maxRows && pos.col > -1) {
     // console.log("BL in bounds")
@@ -203,6 +181,7 @@ const testBLCollisions = ({pos, collisions, bounced, newPlayerObject, getCellFro
   }
 }
 
+// BR collisions - can only bounce up or left
 const testBRCollisions = ({pos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y, maxCols, maxRows}) => {
 	if (!debugBROff && pos.row < maxRows && pos.col < maxCols) {
     // console.log("BR in bounds")
@@ -252,9 +231,6 @@ const testBRCollisions = ({pos, collisions, bounced, newPlayerObject, getCellFro
   }
 }
 
-// doing this to change which test is done first
-// doing that to avoid uniform bounce directions.
-let testRotation = 0;
 
 // this is not a pure function
 // it will modify the newPlayerObject and bounced objects
@@ -278,202 +254,47 @@ export default ({
 
   const getCellFromLayout = ({ row, col }) => layout[row][col];
 
-  // TL collisions - can only bounce down or right
-	testTLCollisions({pos:TLPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y})
-  // if (!debugTLOff && TLPos.row > -1 && TLPos.col > -1) {
-  //   // console.log("TL in bounds")
-  //   const cellFromLayout = getCellFromLayout(TLPos);
-  //   const cellArray = generateCellArray(cellFromLayout);
-  //   if (cellArrayIsNotEmpty(cellArray)) {
-  //     const percentToXStart =
-  //       (newPlayerObject.x + CELL_UNIT_SIZE / 4) % CELL_UNIT_SIZE;
-  //     const inColumnIndexGreaterThan = Math.floor(percentToXStart / 10);
-  //     const percentToYStart =
-  //       (newPlayerObject.y + CELL_UNIT_SIZE / 4) % CELL_UNIT_SIZE;
-  //     const inRowIndexGreaterThan = Math.floor(percentToYStart / 10);
+	// Decided to randomize the order of the tests so bounce directions aren't always the same
+	// This allows the user to slide along walls regardless of which diagonal movement they are using.
+	let tests = ["TL", "TR", "BL", "BR"];
 
-  //     let collisionFound = false;
-
-	// 		// console.log(cellArray);
-  //     // console.log("row range: ", inRowIndexGreaterThan, " to ", Math.min(inRowIndexGreaterThan + 5, 10));
-  //     // console.log("col range: ", inColumnIndexGreaterThan,  " to ", Math.min(inColumnIndexGreaterThan+5, 10));
-
-  //     for (
-  //       let row = inRowIndexGreaterThan;
-  //       row < Math.min(inRowIndexGreaterThan + 5, 10);
-  //       row++
-  //     ) {
-  //       for (
-  //         let col = inColumnIndexGreaterThan;
-  //         col < Math.min(inColumnIndexGreaterThan + 5, 10);
-  //         col++
-  //       ) {
-  //         if (cellArray[row][col]) {
-  //           collisionFound = true;
-  //           break;
-  //         }
-  //       }
-  //       if (collisionFound) break;
-  //     }
-  //     if (collisionFound) {
-  //       if (
-  //         addToCollisionsOrReturnTrue({ letter: cellFromLayout, collisions })
-  //       ) {
-	// 				bounceRightIfApplicable({ bounced, newPlayerObject, x })
-  //         bounceDownIfApplicable({ bounced, newPlayerObject, y })
-  //       }
-  //     }
-  //   }
-  // }
-
-  // TR collisions - can only bounce down or left
-	testTRCollisions({pos : TRPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y, maxCols})
-  // if (!debugTROff && TRPos.col < maxCols && TRPos.row > -1) {
-  //   // console.log("TR in bounds")
-  //   const cellFromLayout = getCellFromLayout(TRPos);
-
-	// 	const cellArray = generateCellArray(cellFromLayout);
-  //   if (cellArrayIsNotEmpty(cellArray)) {
-  //     const percentToXStart =
-  //       (newPlayerObject.x + 3*CELL_UNIT_SIZE / 4) % CELL_UNIT_SIZE;
-  //     const inColumnIndexLessThan = Math.floor(percentToXStart / 10);
-  //     const percentToYStart =
-  //       (newPlayerObject.y + CELL_UNIT_SIZE / 4) % CELL_UNIT_SIZE;
-  //     const inRowIndexGreaterThan = Math.floor(percentToYStart / 10);
-
-  //     let collisionFound = false;
-
-	// 		// console.log(cellArray, inRowIndexGreaterThan, inColumnIndexLessThan);
-  //     // console.log("row range: ", inRowIndexGreaterThan, " to ", Math.min(inRowIndexGreaterThan + 5, 10));
-  //     // console.log("col range: ",  Math.max(-1, inColumnIndexLessThan - 5), " to ", inColumnIndexLessThan);
+	while (tests.length > 0) {
+		const randomTestIndex = Math.floor(Math.random()*tests.length);
+		const test = tests[randomTestIndex];
+		switch (test) {
+			case "TL" : {
+				testTLCollisions({pos:TLPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y})
+				break;
+			}
+			case "TR" : {
+				testTRCollisions({pos : TRPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y, maxCols})
+				break;
+			}
+			case "BL" : {
+				testBLCollisions({pos:BLPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y, maxRows})
+				break;
+			}
+			case "BR" : {
+				testBRCollisions({pos:BRPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y, maxCols, maxRows})
+				break;
+			}
+		}
+		tests = tests.filter(t => t!==test)
+	}
 
 
-  //     for (
-  //       let row = inRowIndexGreaterThan;
-  //       row < Math.min(inRowIndexGreaterThan + 5, 10);
-  //       row++
-  //     ) {
-  //       for (
-  //         let col = inColumnIndexLessThan;
-  //         col > Math.max(-1, inColumnIndexLessThan - 5);
-  //         col--
-  //       ) {
-  //         if (cellArray[row][col]) {
-  //           collisionFound = true;
-  //           break;
-  //         }
-  //       }
-  //       if (collisionFound) break;
-  //     }	
-  //     if (collisionFound) {
-  //       // console.log(bounced, x, y);
-  //       if (
-  //         addToCollisionsOrReturnTrue({ letter: cellFromLayout, collisions })
-  //       ) {
-	// 				bounceLeftIfApplicable({ bounced, newPlayerObject, x })
-  //         bounceDownIfApplicable({ bounced, newPlayerObject, y })
-  //       }
-  //     }
-  //   }
-  // }
+  
+	// testTLCollisions({pos:TLPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y})
+  
+  
+	// testTRCollisions({pos : TRPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y, maxCols})
 
-  // BL collisions - can only bounce up or right
-	testBLCollisions({pos:BLPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y, maxRows})
-  // if (!debugBLOff && BLPos.row < maxRows && BLPos.col > -1) {
-  //   // console.log("BL in bounds")
-  //   const cellFromLayout = getCellFromLayout(BLPos);
-  //   const cellArray = generateCellArray(cellFromLayout);
-  //   if (cellArrayIsNotEmpty(cellArray)) {
-  //     const percentToXStart =
-  //       (newPlayerObject.x + CELL_UNIT_SIZE / 4) % CELL_UNIT_SIZE;
-  //     const inColumnIndexGreaterThan = Math.floor(percentToXStart / 10);
-  //     const percentToYStart =
-  //       (newPlayerObject.y + (3 * CELL_UNIT_SIZE) / 4) % CELL_UNIT_SIZE;
-  //     const inRowIndexLessThan = Math.floor(percentToYStart / 10);
+  
+// testBLCollisions({pos:BLPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y, maxRows})
+  
+  
+	// testBRCollisions({pos:BRPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y, maxCols, maxRows})
 
-  //     let collisionFound = false;
-
-  //     // console.log(cellArray, inRowIndexLessThan, inColumnIndexGreaterThan);
-  //     // console.log("row range: ", inRowIndexLessThan, Math.max(-1, inRowIndexLessThan-5));
-  //     // console.log("col range: ", inColumnIndexGreaterThan, Math.min(inColumnIndexGreaterThan+5, 10));
-
-  //     for (
-  //       let row = inRowIndexLessThan;
-  //       row > Math.max(-1, inRowIndexLessThan - 5);
-  //       row--
-  //     ) {
-  //       for (
-  //         let col = inColumnIndexGreaterThan;
-  //         col < Math.min(inColumnIndexGreaterThan + 5, 10);
-  //         col++
-  //       ) {
-  //         if (cellArray[row][col]) {
-  //           collisionFound = true;
-  //           break;
-  //         }
-  //       }
-  //       if (collisionFound) break;
-  //     }
-  //     if (collisionFound) {
-  //       // console.log(bounced, x, y);
-  //       if (
-  //         addToCollisionsOrReturnTrue({ letter: cellFromLayout, collisions })
-  //       ) {
-  //         bounceRightIfApplicable({ bounced, newPlayerObject, x })
-  //         bounceUpIfApplicable({ bounced, newPlayerObject, y })
-  //       }
-  //     }
-  //   }
-  // }
-
-  // BR collisions - can only bounce up or left
-	testBRCollisions({pos:BRPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y, maxCols, maxRows})
-  // if (!debugBROff && BRPos.row < maxRows && BRPos.col < maxCols) {
-  //   // console.log("BR in bounds")
-  //   const cellFromLayout = getCellFromLayout(BRPos);
-  //   const cellArray = generateCellArray(cellFromLayout);
-  //   if (cellArrayIsNotEmpty(cellArray)) {
-  //     const percentToXStart =
-  //       (newPlayerObject.x + (3 * CELL_UNIT_SIZE) / 4) % CELL_UNIT_SIZE;
-  //     const inColumnIndexLessThan = Math.floor(percentToXStart / 10);
-  //     const percentToYStart =
-  //       (newPlayerObject.y + (3 * CELL_UNIT_SIZE) / 4) % CELL_UNIT_SIZE;
-  //     const inRowIndexLessThan = Math.floor(percentToYStart / 10);
-
-  //     let collisionFound = false;
-
-	// 		// console.log(cellArray)
-  //     // console.log("row range: ", Math.max(-1, inRowIndexLessThan - 5), " to ", inRowIndexLessThan);
-  //     // console.log("col range: ",  Math.max(-1, inColumnIndexLessThan - 5), " to ", inColumnIndexLessThan);
-
-  //     for (
-  //       let row = inRowIndexLessThan;
-  //       row > Math.max(-1, inRowIndexLessThan - 5);
-  //       row--
-  //     ) {
-  //       for (
-  //         let col = inColumnIndexLessThan;
-  //         col > Math.max(-1, inColumnIndexLessThan - 5);
-  //         col--
-  //       ) {
-  //         if (cellArray[row][col]) {
-  //           collisionFound = true;
-  //           break;
-  //         }
-  //       }
-  //       if (collisionFound) break;
-  //     }
-  //     if (collisionFound) {
-  //       // console.log(bounced, x, y);
-  //       if (
-  //         addToCollisionsOrReturnTrue({ letter: cellFromLayout, collisions })
-  //       ) {
-  //         bounceLeftIfApplicable({ bounced, newPlayerObject, x })
-  //         bounceUpIfApplicable({ bounced, newPlayerObject, y })
-  //       }
-  //     }
-  //   }
-  // }
 
   return collisions;
 };
