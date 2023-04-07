@@ -1,36 +1,25 @@
 import { useContext } from "react";
 import GameContext from "../../contexts/GameContext";
-import styled from "styled-components";
 import Header from "../reused/Header";
+import CenteredColumn from "../reused/CenteredColumn";
 import Button from "../reused/buttons/Button";
+import useFocusIdOnMount from "../../hooks/useFocusIdOnMount";
 
-// import Maze from "./Maze";
-// import LevelEditor from "./LevelEditor";
-// import worlds from "../worlds";
+const idToFocus = "play-button";
 
 export default () => {
   const { openEditor, openSlotSelect, openRecords } = useContext(GameContext);
 
+  useFocusIdOnMount(idToFocus);
+
   return (
-    <Container>
+    <CenteredColumn>
       <Header>a-maze-me</Header>
-			<Button onClick={openSlotSelect}>go play</Button>
-			<Button onClick={openEditor}>level editor</Button>
-			<Button onClick={openRecords}>view records</Button>
-    </Container>
+      <Button id={idToFocus} onClick={openSlotSelect}>
+        go play
+      </Button>
+      <Button onClick={openEditor}>level editor</Button>
+      <Button onClick={openRecords}>view records</Button>
+    </CenteredColumn>
   );
 };
-
-const Container = styled.section`
-  display: flex;
-  justify-content: center;
-	flex-direction: column;
-	* {
-		text-align: center;
-	}
-	& > button {
-		width:fit-content;
-		align-self: center;
-		margin-bottom: 1em;
-	}
-`;
