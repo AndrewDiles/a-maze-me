@@ -37,7 +37,7 @@ export const LevelProvider = ({ children }) => {
   const [dimensions, setDimensions] = useState({ x: 320, y: 320, size: 40 });
   const [draw, setDraw] = useState(false);
 	const setStaggerDraw = useStaggerDraw(draw, setDraw);
-	// console.log(level);
+	console.log(level);
 
   useEffect(() => {
     const manageDimensions = () => {

@@ -19,7 +19,7 @@ const defaultState = {
   level: 0,
   startTime: 0,
   finishTime: null,
-	ended: false,
+  ended: false,
   players: [],
   enemies: [],
   goals: [],
@@ -28,7 +28,7 @@ const defaultState = {
 
 export const GameProvider = ({ children }) => {
   const [game, setGame] = useState({ ...defaultState });
-console.log(game)
+  // console.log(game);
   // IN GAME SETTERS
   const initializeGame = ({ newPlayers, newEnemies, newGoals }) => {
     setGame({
@@ -47,12 +47,26 @@ console.log(game)
   const updateLocations = ({ newPlayers, newEnemies }) => {
     setGame({ ...game, players: newPlayers, enemies: newEnemies });
   };
-	const initializeGameWin = ({ newPlayers, newEnemies }) => {
-		setGame({ ...game, players: newPlayers, enemies: newEnemies, finishTime: Date.now(), goals: [] });
-	}
-	const winGame = ()=>{
-		setGame({...game, ended: true, subView: "complete", ...intialiMovementHandlers})
-	}
+  const initializeGameWin = ({ newPlayers, newEnemies }) => {
+    const newGoals = game.goals.map((goal) => {
+      return { ...goal, animation: "popping" };
+    });
+    setGame({
+      ...game,
+      players: newPlayers,
+      enemies: newEnemies,
+      finishTime: Date.now(),
+      goals: newGoals,
+    });
+  };
+  const winGame = () => {
+    setGame({
+      ...game,
+      ended: true,
+      subView: "complete",
+      ...intialiMovementHandlers,
+    });
+  };
   // KEY SETTERS
   const upPress = () => {
     setGame({ ...game, up: true, y: -1 });
@@ -86,7 +100,7 @@ console.log(game)
   const openLevelSelect = () => {
     setGame({ ...game, viewing: "worlds", subView: null });
   };
-  
+
   const playLevel = ({ worldToPlay, levelToPlay }) => {
     setGame({
       ...game,
@@ -96,7 +110,7 @@ console.log(game)
       level: levelToPlay,
     });
   };
-	//TODO: below dispatch not yet used
+  //TODO: below dispatch not yet used
   const playCustom = () => {
     setGame({ ...game, viewing: "custom", subView: null });
   };
@@ -119,8 +133,8 @@ console.log(game)
         initializeGame,
         startTimer,
         updateLocations,
-				initializeGameWin,
-				winGame,
+        initializeGameWin,
+        winGame,
         openSlotSelect,
         openLevelSelect,
         playLevel,
