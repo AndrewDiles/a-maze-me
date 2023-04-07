@@ -1,36 +1,39 @@
 import { useState, useContext } from "react";
 import RecordsContext from "../../contexts/RecordsContext";
-import RecordDisplay from "./RecordDisplay";
+import NameAndRecordDisplay from "./NameAndRecordDisplay";
 import SelectionIndicator from "./SelectionIndicator";
 import WorldTile from "./WorldTile";
 
+import CenteredColumn from "../reused/CenteredColumn";
 import Header from "../reused/Header";
 import styled from "styled-components";
 import PlayButton from "../reused/buttons/PlayButton";
 import ReturnToMenu from "../reused/buttons/ReturnToMenu";
 import findRecordsAndUnlocked from "../../helpers/findRecordsAndUnlocked";
+import worlds from "../../worlds";
+import { MAX_WORLD_INDEX } from "../../constants/general";
 
-const maxWorldIndex = 1;
 const worldArray = [];
-while (worldArray.length <= maxWorldIndex) {
+while (worldArray.length <= MAX_WORLD_INDEX) {
 	worldArray.push(worldArray.length)
 }
 
 export default () => {
   const { selectedRecords } = useContext(RecordsContext);
   const [selection, setSelection] = useState(() => {
-    const worldIndex = Math.min(selectedRecords.length - 1, maxWorldIndex);
+    const worldIndex = Math.min(selectedRecords.length - 1, MAX_WORLD_INDEX);
     const levelIndex = selectedRecords[worldIndex].length;
     return { worldIndex, levelIndex };
   });
 	
 
 	const {records, unlocked} = findRecordsAndUnlocked({selectedRecords, selection})
-
+	const name = worlds[selection.worldIndex][selection.levelIndex].name;
+	const target = worlds[selection.worldIndex][selection.levelIndex].target;
   return (
-    <Container>
+    <CenteredColumn>
       <Header>select level</Header>
-			<RecordDisplay records= {records} unlocked={unlocked}/>
+			<NameAndRecordDisplay records= {records} unlocked={unlocked} name={name} target={target}/>
 			<PlayButton worldToPlay = {selection.worldIndex} levelToPlay={selection.levelIndex} disabled={!unlocked}/>
 			<SelectionIndicator world ={selection.worldIndex + 1} level = {selection.levelIndex +1}/>
       <WorldsContainer>
@@ -44,22 +47,9 @@ export default () => {
         ))}
       </WorldsContainer>
 			<ReturnToMenu lowerCased={true}/>
-    </Container>
+    </CenteredColumn>
   );
 };
-const Container = styled.section`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  * {
-    text-align: center;
-  }
-  & > button {
-    width: fit-content;
-    align-self: center;
-    margin-bottom: 1em;
-  }
-`;
 
 const WorldsContainer = styled.div`
   position: relative;

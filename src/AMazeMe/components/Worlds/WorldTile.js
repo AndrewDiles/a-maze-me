@@ -3,6 +3,7 @@ import styled from "styled-components";
 import LockedLevel from "./LockedLevel";
 import Level from "./Level";
 import RecordsContext from "../../contexts/RecordsContext";
+import SaveCustomLevelToLocalStorage from "../reused/buttons/SaveCustomLevelToLocalStorage";
 
 const calcTransX = (diff) => {
   // f(d) = (125/2|d| - 75, -5d - 10)
@@ -25,17 +26,15 @@ const produceLevelArray = () => {
 export default ({ worldNumber, selection, setSelection }) => {
   const { selectedRecords } = useContext(RecordsContext);
   const selected = selection.worldIndex === worldNumber;
-  console.log(selected);
   const differenceFromSelected = selection.worldIndex - worldNumber;
   // if 0, is selected, transX should be -50%, z-index should be 100
   // if > 0, should be on left
   // if < 0, should be on right
   const worldUnlocked = selectedRecords.length > worldNumber;
-  console.log({ worldNumber }, worldUnlocked);
   return (
     <Tile
       onClick={() => {
-        setSelection({ levelIndex: 0, worldIndex: worldNumber });
+        if (!selected) setSelection({ levelIndex: 0, worldIndex: worldNumber });
       }}
       worldUnlocked={worldUnlocked}
       selected={selected}
@@ -48,10 +47,11 @@ export default ({ worldNumber, selection, setSelection }) => {
           const unlocked = progressArray
             ? levelNumber === 1
               ? true
-              : progressArray[levelNumber - 1]
+              : progressArray[levelNumber - 2]
               ? true
               : false
             : false;
+						
           return (
             <Level
               key={levelNumber}
@@ -120,7 +120,7 @@ const Tile = styled.div`
   }
   &:hover {
     color: var(--color-h);
-    border-color: var(--color-h);
-    cursor: pointer;
+    border-color: ${({ selected }) => !selected && "var(--color-h)"};
+    cursor: ${({ selected }) => !selected && "pointer"};
   }
 `;

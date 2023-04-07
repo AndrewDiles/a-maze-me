@@ -3,10 +3,10 @@ export default ({ world, level }) => {
   return (
     <Container>
       <p>
-        <span>World : {world}</span>
+        <span>world : {world}</span>
       </p>
       <p>
-        <span>Level : {level}</span>
+        <span>level : {level}</span>
       </p>
     </Container>
   );

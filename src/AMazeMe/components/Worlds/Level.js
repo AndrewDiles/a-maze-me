@@ -14,10 +14,12 @@ export default ({
       as={worldSelected ? "button" : "span"}
       disabled={disabled}
       selected={selected}
+      worldSelected={worldSelected}
       onClick={(ev) => {
         if (!worldSelected) return;
         ev.stopPropagation();
-        console.log("clicked");
+				const playButton = document.getElementById("play-button");
+				playButton && playButton.focus();
         setSelection({ ...selection, levelIndex: levelNumber - 1 });
       }}
       locked={!unlocked}
@@ -39,19 +41,20 @@ const Level = styled.button`
     selected ? "var(--color-a)" : locked ? "red" : "var(--color-text)"};
   border-radius: 0.2em;
   border-style: solid;
-
+	outline: ${({selected, worldSelected})=> worldSelected && selected && ".1em solid var(--color-a)"};
   &:active {
     color: var(--color-a);
   }
   &:focus {
     border-color: var(--color-f);
     color: var(--color-f);
-    outline: none;
+    outline: ${({selected, worldSelected})=> (worldSelected && selected) ? ".1em solid var(--color-f)" : "none"};
   }
   &:hover {
-    color: var(--color-h);
-    border-color: var(--color-h);
-    cursor: pointer;
+    color: ${({ worldSelected }) => worldSelected && "var(--color-h)"};
+    border-color: ${({ worldSelected }) => worldSelected && "var(--color-h)"};
+		outline: ${({worldSelected, selected})=> (worldSelected && selected) ? ".1em solid var(--color-h)" : "none"};
+    cursor: ${({locked, worldSelected}) => worldSelected ? locked ? "not-allowed" : "pointer" :"pointer"};
   }
   font-size: 0.75em;
   @media screen and (min-width: 450px) {
@@ -69,7 +72,8 @@ const Level = styled.button`
   &:hover,
   &:active {
     &::after {
-      display: ${({ locked }) => !locked && "none"};
+      display: ${({ locked, worldSelected }) =>
+        (!worldSelected || !locked) && "none"};
       opacity: 0.5;
       content: "🚫";
       position: absolute;
