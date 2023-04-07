@@ -1,5 +1,4 @@
 export default ({selectedRecords, selection}) => {
-
 	const worldProgressArray = selectedRecords[selection.worldIndex];
 
 	const records = worldProgressArray
@@ -7,7 +6,7 @@ export default ({selectedRecords, selection}) => {
 			? worldProgressArray[selection.levelIndex]
 			: null
 		: null;
-	
+
 	let unlocked = false;
 	if (selection.levelIndex === 0) {
 		if (selection.worldIndex === 0) {
@@ -20,8 +19,8 @@ export default ({selectedRecords, selection}) => {
 		}
 	} else {
 		if (
-			selectedRecords[selection.worldIndex - 1] &&
-			selectedRecords[selection.worldIndex - 1][selection.levelIndex - 1]
+			selectedRecords[selection.worldIndex] &&
+			selectedRecords[selection.worldIndex][selection.levelIndex - 1]
 		) {
 			unlocked = true;
 		}
