@@ -6,7 +6,7 @@ export const worldColors = {
   barrier2Color: "#008000", //"green",
   barrier3Color: "#ffd700", //gold",
   floorColor: "#F8F8FF", //"ghostwhite",
-	enemyColor: "#FF00FF"//"fuchsia"
+  enemyColor: "#FF00FF", //"fuchsia"
 };
 
 const levels = [
@@ -35,18 +35,21 @@ const levels = [
 
       "GCFCCCCCCF",
     ],
+    ...worldColors,
   },
-	{
+  {
     name: "?? 2",
     rows: 5,
     cols: 7,
     layout: ["HAAAAAE", "D00000B", "DS000ZB", "D00000B", "GCCCCCF"],
+    ...worldColors,
   },
   {
     name: "?? 3",
     rows: 6,
     cols: 6,
     layout: ["HAEHAE", "DS000B", "GCFG0F", "HAEH0E", "DZ000B", "GCFGCF"],
+    ...worldColors,
   },
   {
     name: "?? 4",
@@ -62,6 +65,7 @@ const levels = [
       "DZOOOO00B",
       "GCCCCCCCF",
     ],
+    ...worldColors,
   },
   {
     name: "?? 5",
@@ -77,6 +81,7 @@ const levels = [
       "D000000SB",
       "GCCCCCCCF",
     ],
+    ...worldColors,
   },
   {
     name: "?? 6",
@@ -94,6 +99,7 @@ const levels = [
       "DGBZB",
       "GCFOF",
     ],
+    ...worldColors,
   },
   {
     name: "?? 7",
@@ -107,6 +113,7 @@ const levels = [
       "DOO0OOCCFB",
       "GCCCCCCCCF",
     ],
+    ...worldColors,
   },
   {
     name: "?? 8",
@@ -122,6 +129,7 @@ const levels = [
       "D0000BZB",
       "GCCCCFCF",
     ],
+    ...worldColors,
   },
   {
     name: "?? 9",
@@ -143,6 +151,7 @@ const levels = [
       "J0JZJ0J",
       "LCLCLCL",
     ],
+    ...worldColors,
   },
 ];
 

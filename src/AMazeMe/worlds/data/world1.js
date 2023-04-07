@@ -15,12 +15,15 @@ const levels = [
     rows: 5,
     cols: 7,
     layout: ["HAAAAAE", "D00000B", "DS000ZB", "D00000B", "GCCCCCF"],
+		target: 2.25,
+		...worldColors
   },
   {
     name: "Four Rooms",
     rows: 6,
     cols: 6,
     layout: ["HAEHAE", "DS000B", "GCFG0F", "HAEH0E", "DZ000B", "GCFGCF"],
+		...worldColors
   },
   {
     name: "Tucked Away",
@@ -36,6 +39,7 @@ const levels = [
       "DZOOOO00B",
       "GCCCCCCCF",
     ],
+		...worldColors
   },
   {
     name: "Turned Around",
@@ -51,6 +55,7 @@ const levels = [
       "D000000SB",
       "GCCCCCCCF",
     ],
+		...worldColors
   },
   {
     name: "Getting Tricky With It",
@@ -68,6 +73,7 @@ const levels = [
       "DGBZB",
       "GCFOF",
     ],
+		...worldColors
   },
   {
     name: "A Fork",
@@ -81,6 +87,7 @@ const levels = [
       "DOO0OOCCFB",
       "GCCCCCCCCF",
     ],
+		...worldColors
   },
   {
     name: "My First Maze",
@@ -96,6 +103,7 @@ const levels = [
       "D0000BZB",
       "GCCCCFCF",
     ],
+		...worldColors
   },
   {
     name: "Plinko",
@@ -117,6 +125,7 @@ const levels = [
       "J0JZJ0J",
       "LCLCLCL",
     ],
+		...worldColors
   },
   {
     name: "Whirlpool",
@@ -134,6 +143,7 @@ const levels = [
       "D00000000B",
       "GCCCCCCCCF",
     ],
+		...worldColors
   },
 ];
 
