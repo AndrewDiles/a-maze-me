@@ -1,25 +1,13 @@
 import ReturnToMenu from "../reused/buttons/ReturnToMenu";
 import Header from "../reused/Header";
-import styled from "styled-components";
+import CenteredColumn from "../reused/CenteredColumn";
 
 export default () => {
   return (
-    <Container>
+    <CenteredColumn>
       <Header>records</Header>
+			display 3 slots.  If you click on one, display collapsable worlds with their progress
       <ReturnToMenu lowerCased={true}/>
-    </Container>
+    </CenteredColumn>
   );
 };
-const Container = styled.section`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  * {
-    text-align: center;
-  }
-  & > button {
-    width: fit-content;
-    align-self: center;
-    margin-bottom: 1em;
-  }
-`;
