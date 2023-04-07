@@ -1,28 +1,14 @@
 import ReturnToMenu from "../reused/buttons/ReturnToMenu";
 import Slots from "./Slots";
 import Header from "../reused/Header";
-import styled from "styled-components";
+import CenteredColumn from "../reused/CenteredColumn";
 
 export default () => {
-  console.log("records", Header);
   return (
-    <Container>
+    <CenteredColumn>
       <Header>select slot</Header>
 			<Slots/>
 			<ReturnToMenu lowerCased={true}/>
-    </Container>
+    </CenteredColumn>
   );
 };
-const Container = styled.section`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  * {
-    text-align: center;
-  }
-  & > button {
-    width: fit-content;
-    align-self: center;
-    margin-bottom: 1em;
-  }
-`;
