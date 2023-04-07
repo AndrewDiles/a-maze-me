@@ -1,0 +1,1 @@
+export default (time) => Math.round((time) / 10) / 100
