@@ -9,5 +9,5 @@ export default ({worldToPlay, levelToPlay, disabled}) => {
   const { playLevel } = useContext(GameContext);
 	useFocusIdOnMount(idToFocus);
 
-  return <Button id = {!disabled && idToFocus} disabled = {disabled} onClick={()=>{playLevel({worldToPlay, levelToPlay})}}>{disabled ? "locked":"play level"}</Button>;
+  return <Button id = {disabled ? "disabled-play-button" : idToFocus} disabled = {disabled} onClick={()=>{playLevel({worldToPlay, levelToPlay})}}>{disabled ? "locked":"play level"}</Button>;
 };
