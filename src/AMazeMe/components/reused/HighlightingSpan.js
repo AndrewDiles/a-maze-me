@@ -5,5 +5,5 @@ export default ({ highlight, children }) => (
 );
 
 const HighlightingSpan = styled.span`
-	color: {({highlight}) => highlight && "var(--color-accent)"};
+  color: ${({ highlight }) => highlight && "var(--color-accent)"};
 `;
