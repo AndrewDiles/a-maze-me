@@ -1,15 +1,12 @@
-import { useContext, useRef, useEffect, useState } from "react";
+import { useContext, useRef, useEffect } from "react";
 import LevelContext from "../../contexts/LevelContext";
-import GameContext from "../../contexts/GameContext";
 
 import borders from "../../helpers/borders";
+import calcColorKey from "../../helpers/calcColorKey";
 import styled from "styled-components";
 
 export default () => {
-  const [mounted, hasMounted] = useState(false);
-  const { game } = useContext(GameContext);
   const { level, dimensions, draw, setDraw } = useContext(LevelContext);
-  const { name, rows, cols, layout, borderColor, floorColor } = level;
   const canvas = useRef(null);
 
   useEffect(() => {
@@ -25,6 +22,8 @@ export default () => {
             x: dimensions.size * colNumber,
             y: dimensions.size * rowNumber,
             size: dimensions.size,
+            color: level[calcColorKey(layoutRow[colNumber])],
+            floor: level.floorColor,
           });
         }
       });
@@ -33,24 +32,24 @@ export default () => {
   }, [draw]);
 
   return (
-		<Container>
-    <Canvas
-			id = "board"
-      ref={canvas}
-      width={dimensions.x}
-      height={dimensions.y}
-      color={level.floorColor}
-    />
-		</Container>
+    <Container>
+      <Canvas
+        id="board"
+        ref={canvas}
+        width={dimensions.x}
+        height={dimensions.y}
+        color={level.floorColor}
+      />
+    </Container>
   );
 };
 
 const Container = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: relative;
-`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+`;
 
 const Canvas = styled.canvas`
   background-color: ${({ color }) => color};

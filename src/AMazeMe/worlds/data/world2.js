@@ -11,30 +11,22 @@ export const worldColors = {
 
 const levels = [
   {
-    name: "?? 1",
-    rows: 8,
-    cols: 8,
+    name: "learning the key",
+    rows: 10,
+    cols: 10,
     layout: [
       "HAAHAEAAAE",
-
       "Dp0DuB00ZB",
-
       "D00GsFCC0B",
-
       "D000000B0B",
-
       "DS0000BA0B",
-
       "D00000B0EE",
-
       "D00000B0WB",
-
       "HAE000BCFB",
-
       "DUw000000B",
-
       "GCFCCCCCCF",
     ],
+		target: 13,
     ...worldColors,
   },
   {

@@ -30,7 +30,7 @@ const drawKey = (ctx, x, y, size, floor) => {
 	ctx.stroke();
 }
 
-const drawBorder = (direction, { c, x, y, size, color, floor }) => {
+const drawBorder = (direction, { c, x, y, size, color, floor, building }) => {
   const ctx = c.getContext("2d");
   ctx.fillStyle = color;
   switch (direction) {
@@ -67,26 +67,33 @@ const drawBorder = (direction, { c, x, y, size, color, floor }) => {
 		}
 		case "key1" : {
 			drawKey(ctx, x, y, size, floor);
+			if (!building) return;
 			ctx.fillStyle = color;
 			ctx.font = `${size/6}px Arial`;
 			return ctx.fillText("KEY 1",x+size/4, y+size/6);
 		}
 		case "key2" : {
 			drawKey(ctx, x, y, size, floor);
+			if (!building) return;
 			ctx.fillStyle = color;
 			ctx.font = `${size/6}px Arial`;
 			return ctx.fillText("KEY 2",x+size/4, y+size/6);
 		}
 		case "key3" : {
 			drawKey(ctx, x, y, size, floor);
+			if (!building) return;
 			ctx.fillStyle = color;
 			ctx.font = `${size/6}px Arial`;
 			return ctx.fillText("KEY 3",x+size/4, y+size/6);
 		}
+		case "empty" : {
+			return ctx.fillRect(x, y, size, size);
+		}
   }
 };
 
-// expects object that contains c (canvas elem), x (x-offset), y (y-offset), color (fillColor)
+// expects object that contains c (canvas elem), x (x-offset), y (y-offset), size
+// optionally contains color (fillColor), floor, building 
 export default {
   A: (p) => {
     drawBorder("top", p);
@@ -214,7 +221,7 @@ export default {
   },
   // switch 1 and walls
   p: (p) => {
-    p.building && drawBorder("key1", p);
+    drawBorder("key1", p);
   },
   q: (p) => {
     drawBorder("top", p);
@@ -230,7 +237,7 @@ export default {
   },
   // switch 2 and walls
   u: (p) => {
-    p.building && drawBorder("key2", p);
+    drawBorder("key2", p);
   },
   v: (p) => {
     drawBorder("top", p);
@@ -246,7 +253,7 @@ export default {
   },
   // switch 3 and walls
   U: (p) => {
-    p.building && drawBorder("key3", p);
+  	drawBorder("key3", p);
   },
   V: (p) => {
     drawBorder("top", p);
@@ -271,5 +278,7 @@ export default {
   },
 
   // nothing
-  0: () => {},
+  0: (p) => {
+		!p.building && drawBorder("empty", p);
+	},
 };

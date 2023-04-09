@@ -10,7 +10,7 @@ export default ({ records, unlocked, name, target }) => {
           record: <span>{time}</span>s
         </span>
       ) : unlocked ? (
-        "level incomplete"
+        "unbeaten"
       ) : (
         "level locked"
       )}

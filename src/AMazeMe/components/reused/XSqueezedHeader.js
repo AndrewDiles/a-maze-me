@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 
+// This component will fail its task if the user increases their desired font size after this component has rendered
+
 export default ({ margin, children }) => {
   const [xScale, setXScale] = useState(1);
   const [minWidth, setMinWidth] = useState(0);

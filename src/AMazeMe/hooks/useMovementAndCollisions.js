@@ -30,10 +30,12 @@ const useMovementAndCollisions = ({ hasStarted, hasEnded }) => {
         y: newPlayerObject.y,
       });
       const bounced = { y: false, x: false };
-      // check OOB
-      ////// make keep in bounds function
+
+      // bounces player inbounds if OOB (modifies bounced and newPlayerObject)
 			keepInBounds({TLPos, BRPos, rows, cols, bounced, newPlayerObject})
       
+			// manages collisions with walls, goals, keys and *enemies
+			// (modifies bounced and newPlayerObject)
       const collisions = calcColisions({
         bounced,
         newPlayerObject,
@@ -73,7 +75,6 @@ const useMovementAndCollisions = ({ hasStarted, hasEnded }) => {
   };
 
 	const cb = hasEnded ? ()=>{} : hasStarted ? updateLocation : ()=>{}
-
   useInterval({ cb, delay: GAME_FREQ });
 };
 

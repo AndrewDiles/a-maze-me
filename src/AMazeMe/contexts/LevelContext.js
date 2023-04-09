@@ -5,7 +5,6 @@ import world1, {worldColors} from "../worlds/data/world1";
 const LevelContext = createContext(null);
 export default LevelContext;
 
-// TODO remove this once test is complete
 const defaultState = {
   name: world1[0].name,
   rows: world1[0].rows,
@@ -37,7 +36,7 @@ export const LevelProvider = ({ children }) => {
   const [dimensions, setDimensions] = useState({ x: 320, y: 320, size: 40 });
   const [draw, setDraw] = useState(false);
 	const setStaggerDraw = useStaggerDraw(draw, setDraw);
-	console.log(level);
+	console.log(level.layout);
 
   useEffect(() => {
     const manageDimensions = () => {
@@ -58,29 +57,19 @@ export const LevelProvider = ({ children }) => {
   }, [level.rows, level.cols]);
 
 	const unlockKey1 = () => {
-		// const newLayout = [];
-		// level.layout.forEach((rowString)=>{
-		// 	let newRowString = ""
-		// 	for(let i = 0; i < rowString.length; i++) {
-		// 		const current = rowString[i];
-		// 		if (current === "p" || current === "q" || current === "r" || current === "s" || current === "t") {
-		// 			newRowString+="0"
-		// 		} else {
-		// 			newRowString += current
-		// 		}
-		// 	}
-		// 	newLayout.push(newRowString)
-		// })
 		const newLayout = removeTargetLettersFromLayout(level.layout, "p", "q", "r", "s", "t")
-		setLevel({...level, layout: newLayout})
+		setLevel({...level, layout: newLayout});
+		setDraw(Date.now());
 	}
 	const unlockKey2 = () => {
 		const newLayout = removeTargetLettersFromLayout(level.layout, "u", "v", "w", "x", "y")
-		setLevel({...level, layout: newLayout})
+		setLevel({...level, layout: newLayout});
+		setDraw(Date.now());
 	}
 	const unlockKey3 = () => {
 		const newLayout = removeTargetLettersFromLayout(level.layout, "U", "V", "W", "X", "Y")
-		setLevel({...level, layout: newLayout})
+		setLevel({...level, layout: newLayout});
+		setDraw(Date.now());
 	}
 
   return (

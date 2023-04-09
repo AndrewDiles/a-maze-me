@@ -25,7 +25,7 @@ export default () => {
   useEffect(() => {
     let worldInfo = worlds[game.world];
     worldInfo = worldInfo && worldInfo[game.level];
-    console.log(worldInfo);
+    // console.log(worldInfo);
     if (!worldInfo) return setMounted(false);
     setLevel(JSON.parse(JSON.stringify(worldInfo)));
 

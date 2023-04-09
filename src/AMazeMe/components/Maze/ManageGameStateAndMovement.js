@@ -19,11 +19,11 @@ export default () => {
     startTimer();
   }, []);
 
-  useEffect(() => {
-    if (game.startTime) {
-      console.log("game has begun");
-    }
-  }, [game.startTime]);
+  // useEffect(() => {
+  //   if (game.startTime) {
+  //     console.log("game has begun");
+  //   }
+  // }, [game.startTime]);
 
   useEffect(() => {
     if (game.finishTime && !finishHandled) {
@@ -33,9 +33,6 @@ export default () => {
   }, [game.finishTime]);
 
   useMovementControls();
-  // const hasEnded =
-  //   game.players.every((player) => !player.alive) || game.finishTime > 0;
-
   useMovementAndCollisions({
     hasStarted: game.startTime > 0,
     hasEnded: game.ended,
@@ -124,7 +121,6 @@ const Square = styled.div.attrs((props) => ({
   transition-timing-function: ease-in-out;
   animation-duration: ${({ WIN_DELAY }) => WIN_DELAY}ms;
   /* options are win, damage, sparkles, popping */
-  /* animation: ${({ animation }) => animation && `${animation}`}; */
   animation-name: ${({ animation }) =>
     animation === "popping" ? popping : animation === "win" ? win : ""};
 `;

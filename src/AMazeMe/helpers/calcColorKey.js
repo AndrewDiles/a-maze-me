@@ -16,7 +16,7 @@ export default (letter) => {
 
   if (letter === "Z") return "goalColor";
 
-  if (letter === 0) return "floorColor";
+  if (letter === "0") return "floorColor";
 };
 
 
