@@ -4,6 +4,7 @@ import SlotSelection from "./SlotSelection";
 import Worlds from "./Worlds";
 import Menu from "./Menu";
 import Maze from "./Maze";
+import Replay from "./Replay";
 import ImportCustom from "./ImportCustom";
 import LevelEditor from "./LevelEditor";
 import Records from "./Records";
@@ -21,6 +22,11 @@ export default () => {
     case "maze": {
       return <Maze />;
     }
+		case "replay": {
+			return <Replay/>;
+		}
+
+		// TODO custom levels
 		case "custom":{
 			return <h1>BUILD CUSTOM MAZE ACCESS / GEN</h1>
 		}
