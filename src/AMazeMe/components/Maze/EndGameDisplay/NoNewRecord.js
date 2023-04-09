@@ -10,14 +10,14 @@ export default ({
   <CenteredColumn>
     <p>
       your best time:{" "}
-      <HighlightingSpan beatTarget={beatTarget}>
+      <HighlightingSpan highlight={beatTarget}>
         {thisRecord["best time"]}
       </HighlightingSpan>
       s
     </p>
     <p>
       this time:{" "}
-      <HighlightingSpan beatTarget={thisBeatTarget}>
+      <HighlightingSpan highlight={thisBeatTarget}>
         {recordsHandled.thisTime}
       </HighlightingSpan>
       s
