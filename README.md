@@ -31,3 +31,11 @@ then, run `npm start` to play the game
 ## Dev Notes:
 
 Added debounce affect on redraw on resizes as the DOM is getting crushed
+
+TODO: slot deletion / reset
+TODO: add custom level selection instead of slot
+TODO: build separate case in component generation for custom
+TODO: consider added world number at top of Tile
+TODO: records
+TODO: light up worlds based on targets
+TODO: world / level selection in editor
