@@ -2,6 +2,7 @@ import { CELL_UNIT_SIZE, BOUNCE_MAGNITUDE } from "../constants/general";
 import generateCellArray from "./generateCellArray";
 import cellArrayIsNotEmpty from "./cellArrayIsNotEmpty";
 import {bounceRightIfApplicable, bounceLeftIfApplicable, bounceUpIfApplicable, bounceDownIfApplicable} from "./bounceHelpers";
+import logError from "./logError";
 
 const addToCollisionsOrReturnTrue = ({ letter, collisions }) => {
   //TODO: add enemy letters in here
@@ -24,7 +25,7 @@ const debugBLOff = false;
 const debugBROff = false;
 
 // this is just a warning logger.  This should never be seen in prod
-if (debugTLOff || debugTROff || debugBLOff || debugBROff) console.log('%c WARNING COLLISION DEBUGGER ACTIVE ', 'background: black; color: red; padding: 10px; font-weight: 900; font-size: 2em;');
+if (debugTLOff || debugTROff || debugBLOff || debugBROff) logError("WARNING COLLISION DEBUGGER ACTIVE");
 
 // TL collisions - can only bounce down or right
 const testTLCollisions = ({pos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y}) => {
