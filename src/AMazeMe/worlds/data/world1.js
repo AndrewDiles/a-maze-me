@@ -15,31 +15,33 @@ const levels = [
     rows: 5,
     cols: 7,
     layout: ["HAAAAAE", "D00000B", "DS000ZB", "D00000B", "GCCCCCF"],
-		target: 2.25,
-		...worldColors
+    target: 1.5,
+    ...worldColors,
   },
   {
     name: "Four Rooms",
     rows: 6,
     cols: 6,
     layout: ["HAEHAE", "DS000B", "GCFG0F", "HAEH0E", "DZ000B", "GCFGCF"],
-		...worldColors
+    target: 2.9,
+    ...worldColors,
   },
   {
-    name: "Tucked Away",
+    name: "My First Maze",
     rows: 8,
-    cols: 9,
+    cols: 8,
     layout: [
-      "HAAAAAAAE",
-      "DS000B00B",
-      "D0000B00B",
-      "GCCCCF00B",
-      "D0000000B",
-      "DOOOOO00B",
-      "DZOOOO00B",
-      "GCCCCCCCF",
+      "HAAHAAAE",
+      "DS0D000B",
+      "D000000B",
+      "D000000B",
+      "D000AE0B",
+      "D0000B0B",
+      "D0000BZB",
+      "GCCCCFCF",
     ],
-		...worldColors
+    target: 3.1,
+    ...worldColors,
   },
   {
     name: "Turned Around",
@@ -55,7 +57,25 @@ const levels = [
       "D000000SB",
       "GCCCCCCCF",
     ],
-		...worldColors
+    target: 5,
+    ...worldColors,
+  },
+  {
+    name: "Tucked Away",
+    rows: 8,
+    cols: 9,
+    layout: [
+      "HAAAAAAAE",
+      "DS000B00B",
+      "D0000B00B",
+      "GCCCCF00B",
+      "D0000000B",
+      "DOOOOO00B",
+      "DZOOOO00B",
+      "GCCCCCCCF",
+    ],
+    target: 6.8,
+    ...worldColors,
   },
   {
     name: "Getting Tricky With It",
@@ -73,37 +93,8 @@ const levels = [
       "DGBZB",
       "GCFOF",
     ],
-		...worldColors
-  },
-  {
-    name: "A Fork",
-    rows: 6,
-    cols: 10,
-    layout: [
-      "HAEAAAAAAE",
-      "GSB0HAAAAB",
-      "HLB0GCCCBN",
-      "D0B0OZ0OBB",
-      "DOO0OOCCFB",
-      "GCCCCCCCCF",
-    ],
-		...worldColors
-  },
-  {
-    name: "My First Maze",
-    rows: 8,
-    cols: 8,
-    layout: [
-      "HAAHAAAE",
-      "DS0D000B",
-      "D000000B",
-      "D000000B",
-      "D000AE0B",
-      "D0000B0B",
-      "D0000BZB",
-      "GCCCCFCF",
-    ],
-		...worldColors
+    target: 6.2,
+    ...worldColors,
   },
   {
     name: "Plinko",
@@ -125,7 +116,8 @@ const levels = [
       "J0JZJ0J",
       "LCLCLCL",
     ],
-		...worldColors
+    target: 4.9,
+    ...worldColors,
   },
   {
     name: "Whirlpool",
@@ -143,7 +135,23 @@ const levels = [
       "D00000000B",
       "GCCCCCCCCF",
     ],
-		...worldColors
+    target: 20,
+    ...worldColors,
+  },
+  {
+    name: "A Fork",
+    rows: 6,
+    cols: 10,
+    layout: [
+      "HAEAAAAAAE",
+      "GSB0HAAAAB",
+      "HLB0GCCCBN",
+      "D0B0OZ0OBB",
+      "DOO0OOCCFB",
+      "GCCCCCCCCF",
+    ],
+    target: 11,
+    ...worldColors,
   },
 ];
 
