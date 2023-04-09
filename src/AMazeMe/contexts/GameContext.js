@@ -38,6 +38,7 @@ export const GameProvider = ({ children }) => {
       goals: newGoals,
       startTime: 0,
       finishTime: null,
+			ended: false,
       ...intialiMovementHandlers,
     });
   };
@@ -67,6 +68,7 @@ export const GameProvider = ({ children }) => {
       ...intialiMovementHandlers,
     });
   };
+
   // KEY SETTERS
   const upPress = () => {
     setGame({ ...game, up: true, y: -1 });
@@ -110,6 +112,32 @@ export const GameProvider = ({ children }) => {
       level: levelToPlay,
     });
   };
+	const replayLevel = () => {
+    setGame({
+			...game,
+			viewing: "replay",
+  		subView: null,
+      startTime: 0,
+      finishTime: null,
+			ended: false,
+      ...intialiMovementHandlers,
+    });
+  };
+	const playNextLevel = () => {
+		const newLevel = game.level === 8 ? 0 : game.level +1;
+		const newWorld = newLevel === 0 ? game.world +1 : game.world
+		setGame({
+			...game,
+			world: newWorld,
+			level: newLevel,
+			viewing: "replay",
+  		subView: null,
+      startTime: 0,
+      finishTime: null,
+			ended: false,
+      ...intialiMovementHandlers,
+    });
+	}
   //TODO: below dispatch not yet used
   const playCustom = () => {
     setGame({ ...game, viewing: "custom", subView: null });
@@ -138,6 +166,8 @@ export const GameProvider = ({ children }) => {
         openSlotSelect,
         openLevelSelect,
         playLevel,
+				replayLevel,
+				playNextLevel,
         playCustom,
         openEditor,
         openRecords,
