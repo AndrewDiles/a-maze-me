@@ -63,12 +63,12 @@ const WorldsContainer = styled.div`
 		margin-top: 120px;
 		min-height: 250px;
 	}
-	@media screen and (min-width: 1000px) {
+	/* @media screen and (min-width: 1000px) {
 		margin-top: 180px;
 		min-height: 310px;
-	}
-	@media screen and (min-width: 1200px) {
+	} */
+	/* @media screen and (min-width: 1200px) {
 		margin-top: 220px;
 		min-height: 370px;
-	}
+	} */
 `;

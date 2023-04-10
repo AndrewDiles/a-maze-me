@@ -5,8 +5,10 @@ export const worldColors = {
   barrier1Color: "#9400D3", //"darkviolet",
   barrier2Color: "#008000", //"green",
   barrier3Color: "#ffd700", //gold",
+  "switch onColor": "#00FF00", //lime,
+  "switch offColor": "#FF00FF", //fuchsia,
+  enemyColor: "#ffa500", //"orange"
   floorColor: "#F8F8FF", //"ghostwhite",
-  enemyColor: "#FF00FF", //"fuchsia"
 };
 
 const levels = [
@@ -26,9 +28,34 @@ const levels = [
       "DUw000000B",
       "GCFCCCCCCF",
     ],
-		target: 13,
+    target: 13,
     ...worldColors,
   },
+	{
+
+		name: "what the flip",
+
+		rows: 6,
+		
+		cols: 10,
+		
+		layout:[
+		"OOAEAAAAOO",
+		
+		"O00Bc0Q0RO",
+		
+		"DSQ0PAA00B",
+		
+		"HvAEhAAAAE",
+		
+		"O0ZB0Q0RuO",
+		
+		"OOCFCCCCOO",
+		
+		],
+		target: 13,
+		...worldColors,
+	},
   {
     name: "?? 2",
     rows: 5,

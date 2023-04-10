@@ -85,9 +85,9 @@ const Level = styled.button`
       @media screen and (min-width: 750px) {
         top: -12%;
       }
-      @media screen and (min-width: 1000px) {
+      /* @media screen and (min-width: 1000px) {
         font-size: 125%;
-      }
+      } */
     }
   }
 `;

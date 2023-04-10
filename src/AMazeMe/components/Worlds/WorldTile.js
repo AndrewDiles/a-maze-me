@@ -104,20 +104,20 @@ const Tile = styled.div`
     padding: 10px;
     grid-gap: 10px;
   }
-  @media screen and (min-width: 1000px) {
+  /* @media screen and (min-width: 1000px) {
     font-size: 1.5em;
     height: 250px;
     width: 250px;
     padding: 15px;
     grid-gap: 15px;
-  }
-  @media screen and (min-width: 1200px) {
+  } */
+  /* @media screen and (min-width: 1200px) {
     font-size: 2em;
     height: 300px;
     width: 300px;
     padding: 18px;
     grid-gap: 18px;
-  }
+  } */
   &:hover {
     color: var(--color-h);
     border-color: ${({ selected }) => !selected && "var(--color-h)"};

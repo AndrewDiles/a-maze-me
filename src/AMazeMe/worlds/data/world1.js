@@ -5,8 +5,10 @@ export const worldColors = {
   barrier1Color: "#9400D3", //"darkviolet",
   barrier2Color: "#0000FF", //"blue",
   barrier3Color: "#ffd700", //gold",
+  "switch onColor": "#00FF00", //lime,
+  "switch offColor": "#FF00FF", //fuchsia,
+  enemyColor: "#ffa500", //"orange"
   floorColor: "#F8F8FF", //"ghostwhite",
-  enemyColor: "#FF00FF", //"fuchsia"
 };
 
 const levels = [
