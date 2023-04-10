@@ -29,8 +29,58 @@ const drawKey = (ctx, x, y, size, floor) => {
 	ctx.fill();
 	ctx.stroke();
 }
+// TODO draw switches
+const drawSwitchOn= (ctx, x, y, size, activeColor, borderColor, isActive) => {
+	ctx.fillStyle = isActive ? activeColor : borderColor;
+	ctx.beginPath();
+	ctx.lineTo(x +0.5 * size,y+0.55 * size);
+	ctx.lineTo(x +0.7 * size,y+0.2 * size);
+	ctx.lineTo(x +0.75 * size,y+0.25 * size);
+	ctx.lineTo(x +0.55 * size,y+0.6 * size);
+	ctx.closePath();
+	ctx.fill();
+	ctx.stroke();
 
-const drawBorder = (direction, { c, x, y, size, color, floor, building }) => {
+	ctx.fillStyle = borderColor;
+	ctx.beginPath();
+	ctx.arc(x + 0.5 * size, y + 0.85 * size, 0.3 * size, 1 * Math.PI, 2 * Math.PI);
+	ctx.closePath();
+	ctx.fill();
+	ctx.stroke();
+	ctx.fillStyle = activeColor;
+	ctx.beginPath();
+	ctx.arc(x + 0.5025 * size, y + 0.83 * size, 0.25 * size, 1 * Math.PI, 2 * Math.PI);
+	ctx.closePath();
+	ctx.fill();
+	ctx.stroke();
+}
+
+const drawSwitchOff = (ctx, x, y, size, activeColor, borderColor, isActive) => {
+	ctx.fillStyle = isActive ? activeColor : borderColor;
+	ctx.beginPath();
+	ctx.lineTo(x +0.5 * size,y+0.55 * size);
+	ctx.lineTo(x +0.3 * size,y+0.2 * size);
+	ctx.lineTo(x +0.25 * size,y+0.25 * size);
+	ctx.lineTo(x +0.45 * size,y+0.6 * size);
+	ctx.closePath();
+	ctx.fill();
+	ctx.stroke();
+
+	ctx.fillStyle = borderColor;
+	ctx.beginPath();
+	ctx.arc(x + 0.5 * size, y + 0.85 * size, 0.3 * size, 1 * Math.PI, 2 * Math.PI);
+	ctx.closePath();
+	ctx.fill();
+	ctx.stroke();
+	ctx.fillStyle = activeColor;
+	ctx.beginPath();
+	ctx.arc(x + 0.5025 * size, y + 0.83 * size, 0.25 * size, 1 * Math.PI, 2 * Math.PI);
+	ctx.closePath();
+	ctx.fill();
+	ctx.stroke();
+}
+
+const drawBorder = (direction, { c, x, y, size, color, floor, building, borderColor, switchOn }) => {
   const ctx = c.getContext("2d");
   ctx.fillStyle = color;
   switch (direction) {
@@ -85,6 +135,20 @@ const drawBorder = (direction, { c, x, y, size, color, floor, building }) => {
 			ctx.fillStyle = color;
 			ctx.font = `${size/6}px Arial`;
 			return ctx.fillText("KEY 3",x+size/4, y+size/6);
+		}
+		case "switchOn" : {
+			drawSwitchOn(ctx, x, y, size, color , borderColor, building ? true : switchOn ? true : false);
+			if (!building) return;
+			ctx.fillStyle = color;
+			ctx.font = `${size/6}px Arial`;
+			return ctx.fillText("TURN ON",x+size/9, y+size/6);
+		}
+		case "switchOff" : {
+			drawSwitchOff(ctx, x, y, size, color, borderColor, building ? true : !switchOn ? true : false);
+			if (!building) return;
+			ctx.fillStyle = color;
+			ctx.font = `${size/6}px Arial`;
+			return ctx.fillText("TURN OFF",x+size/11, y+size/6);
 		}
 		case "empty" : {
 			return ctx.fillRect(x, y, size, size);
@@ -156,6 +220,24 @@ export default {
     ctx.fillStyle = color;
     ctx.fillRect(x, y, size, size);
   },
+
+	// switch bars
+	P: (p) => {
+		p.building && drawBorder("left", p);
+		p.building && drawBorder("right", p)
+	},
+	// T:(p) => {
+	// 	p.building && drawBorder("top", p);
+	// 	p.building && drawBorder("bottom", p)
+	// }, Note that T will not be drawn with canvas, but will be used for collisions
+
+	// switch on/off
+	Q: (p) => {
+		drawBorder("switchOn", p);
+	},
+	R: (p) => {
+		drawBorder("switchOff", p);
+	},
 
   a: (p) => {
     drawBorder("cornerTR", p);
