@@ -10,10 +10,11 @@ import calcColisions from "../helpers/calcColisions";
 const useMovementAndCollisions = ({ hasStarted, hasEnded }) => {
   const { game, updateLocations, initializeGameWin } = useContext(GameContext);
   const { x, y, players, enemies } = game;
-  const { level, unlockKey1, unlockKey2, unlockKey3 } =
+  const { level, unlockKey1, unlockKey2, unlockKey3, flipSwitch } =
     useContext(LevelContext);
   const { rows, cols, layout } = level;
   const updateLocation = () => {
+		let newSwitchValue = game.switch;
     // TODO: manage enemy movement / ai if it gets included
     const newEnemies = [];
 
@@ -63,14 +64,24 @@ const useMovementAndCollisions = ({ hasStarted, hasEnded }) => {
       } else if (collisions.includes("damage")) {
         newPlayerObject.alive = false;
         newPlayerObject.animation = "damage";
-      }
+      } else if (collisions.includes("turn switch on")) {
+				if (!game.switch) {
+					flipSwitch(true);
+					newSwitchValue = true; //////
+				}
+			} else if (collisions.includes("turn switch off")) {
+				if (game.switch) {
+					flipSwitch(false);
+					newSwitchValue = false; /////
+				}
+			}
       return newPlayerObject;
     });
 
     if (!game.finishTime && newPlayers.some((player) => player.animation === "win")) {
       initializeGameWin({ newPlayers, newEnemies });
     } else {
-      updateLocations({ newPlayers, newEnemies });
+      updateLocations({ newPlayers, newEnemies, newSwitchValue });
     }
   };
 

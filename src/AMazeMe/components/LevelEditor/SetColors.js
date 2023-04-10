@@ -8,7 +8,7 @@ export default () => {
 	const {size } = dimensions;
 
   const colorKeys = Object.keys(level).filter((key) => key.includes("olor"));
-
+	console.log(Object.keys(level), colorKeys);
   return (
     <Container rightWall={size * 1.5}>
       {colorKeys.map((colorKey) => (

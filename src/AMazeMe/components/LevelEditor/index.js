@@ -31,12 +31,14 @@ export default () => {
         .clearRect(0, 0, dimensions.x, dimensions.y);
       level.layout.forEach((layoutRow, rowNumber) => {
         for (let colNumber = 0; colNumber < layoutRow.length; colNumber++) {
-          borders[layoutRow[colNumber]]({
+          borders[layoutRow[colNumber]] && borders[layoutRow[colNumber]]({
             c: canvas.current,
             x: dimensions.size * colNumber,
             y: dimensions.size * rowNumber,
             size: dimensions.size,
             color: level[calcColorKey(layoutRow[colNumber])],
+						borderColor: level.borderColor,
+						switchOn: game.switch,
             floor: level.floorColor,
             building: true,
           });

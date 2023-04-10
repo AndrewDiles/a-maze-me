@@ -14,6 +14,10 @@ const addToCollisionsOrReturnTrue = ({ letter, collisions }) => {
     collisions.push("key2");
   } else if (letter === "p") {
     collisions.push("key1");
+  } else if (letter === "Q") {
+    collisions.push("turn switch on");
+  } else if (letter === "R") {
+    collisions.push("turn switch off");
   } else return true;
 	// "damage" for enemy / projectiles
 };

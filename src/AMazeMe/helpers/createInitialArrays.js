@@ -12,7 +12,7 @@ const findMovableSprite = ({ layout, targetValues }) => {
             x: colIndex * CELL_UNIT_SIZE,
             y: rowIndex * CELL_UNIT_SIZE,
             type: targetValue,
-						animation: null,
+            animation: null,
           });
         }
       }
@@ -26,5 +26,7 @@ export const createInitialPlayerArrays = (worldInfo) =>
 export const createInitialGoalArrays = (worldInfo) =>
   findMovableSprite({ layout: worldInfo.layout, targetValues: ["Z"] });
 // TODO: return to this once you are creating enemies
+export const createInitialSwitchesArrays = (worldInfo) =>
+  findMovableSprite({ layout: worldInfo.layout, targetValues: ["P"] });
 export const createInitialEnemyArrays = (worldInfo) =>
   findMovableSprite({ layout: worldInfo.layout, targetValues: [] });

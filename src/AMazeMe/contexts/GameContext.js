@@ -18,10 +18,12 @@ const defaultState = {
   world: 0,
   level: 0,
   startTime: 0,
+	switch: false,
   finishTime: null,
   ended: false,
   players: [],
   enemies: [],
+	switches: [],
   goals: [],
   ...intialiMovementHandlers,
 };
@@ -30,14 +32,16 @@ export const GameProvider = ({ children }) => {
   const [game, setGame] = useState({ ...defaultState });
   // console.log(game);
   // IN GAME SETTERS
-  const initializeGame = ({ newPlayers, newEnemies, newGoals }) => {
+  const initializeGame = ({ newPlayers, newEnemies, newGoals, newSwitches }) => {
     setGame({
       ...game,
       players: newPlayers,
       enemies: newEnemies,
       goals: newGoals,
+			switches: newSwitches,
       startTime: 0,
       finishTime: null,
+			switch: false,
 			ended: false,
       ...intialiMovementHandlers,
     });
@@ -45,9 +49,12 @@ export const GameProvider = ({ children }) => {
   const startTimer = () => {
     setGame({ ...game, startTime: Date.now() });
   };
-  const updateLocations = ({ newPlayers, newEnemies }) => {
-    setGame({ ...game, players: newPlayers, enemies: newEnemies });
+  const updateLocations = ({ newPlayers, newEnemies, newSwitchValue }) => {
+    setGame({ ...game, players: newPlayers, enemies: newEnemies, switch: newSwitchValue });
   };
+	// const modifySwitch = (newValue) => {
+	// 	setGame({...game, switch: newValue ? true : false})
+	// }
   const initializeGameWin = ({ newPlayers, newEnemies }) => {
     const newGoals = game.goals.map((goal) => {
       return { ...goal, animation: "popping" };
@@ -118,6 +125,7 @@ export const GameProvider = ({ children }) => {
 			viewing: "replay",
   		subView: null,
       startTime: 0,
+			switch: false,
       finishTime: null,
 			ended: false,
       ...intialiMovementHandlers,
@@ -132,6 +140,7 @@ export const GameProvider = ({ children }) => {
 			level: newLevel,
 			viewing: "replay",
   		subView: null,
+			switch: false,
       startTime: 0,
       finishTime: null,
 			ended: false,
@@ -161,6 +170,7 @@ export const GameProvider = ({ children }) => {
         initializeGame,
         startTimer,
         updateLocations,
+				// modifySwitch,
         initializeGameWin,
         winGame,
         openSlotSelect,

@@ -7,9 +7,7 @@ import Warnings from "./Warnings";
 
 export default () => {
   const { level, dimensions } = useContext(LevelContext);
-const levelKeys  = Object.keys(level)
-const containsPlayer = level.layout.some(s=>s.includes("S"));
-const containsGoal = level.layout.some(s=>s.includes("Z"));
+	const levelKeys  = Object.keys(level)
   return (
     <LevelOutputAndColorsContainer top = {dimensions.y + 2*dimensions.size} left = {.5*dimensions.size}>
 			<SetColors/>

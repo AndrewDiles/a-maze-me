@@ -12,7 +12,7 @@ export default () => {
   const { playerColor, goalColor } = level;
   const { game, startTimer, winGame } = useContext(GameContext);
   const { size } = dimensions;
-	const [finishHandled, setFinishHandled] = useState(false)
+  const [finishHandled, setFinishHandled] = useState(false);
 
   useEffect(() => {
     board.current = document.getElementById("board");
@@ -27,7 +27,7 @@ export default () => {
 
   useEffect(() => {
     if (game.finishTime && !finishHandled) {
-			setFinishHandled(true);
+      setFinishHandled(true);
       setTimeout(winGame, WIN_DELAY);
     }
   }, [game.finishTime]);
@@ -41,6 +41,7 @@ export default () => {
   if (!board.current) return null;
 
   const x = board.current.getBoundingClientRect().x;
+	console.log(game.switch)
   return (
     <>
       {game.players.map((playerInfo, index) => {
@@ -71,6 +72,21 @@ export default () => {
             animation={goalInfo.animation}
             WIN_DELAY={WIN_DELAY}
           />
+        );
+      })}
+      {game.switches.map((switchInfo, index) => {
+        const top = size * (switchInfo.y / 100);
+        const left = size + size * (switchInfo.x / 100);
+        return (
+          <Switch
+            key={index}
+            color={playerColor}
+            top={top}
+            left={left}
+            size={size}
+          >
+            {game.switch ? "open" : "closed"}
+          </Switch>
         );
       })}
     </>
@@ -130,4 +146,22 @@ const Player = styled(Square)`
 `;
 const Goal = styled(Square)`
   border-radius: 50%;
+`;
+
+const Switch = styled.div.attrs((props) => ({
+  style: {
+    transform: `translate(${props.left}px, ${props.top}px)`,
+    height: `${props.size}px`,
+    width: `${props.size}px`,
+    transitionDuration: `${GAME_FREQ}ms`,
+  },
+}))`
+  transform-origin: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  transition-property: transform;
+  transition-timing-function: ease-in-out;
+	background-color: silver;
 `;

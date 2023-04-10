@@ -17,6 +17,9 @@ export default (letter) => {
   if (letter === "Z") return "goalColor";
 
   if (letter === "0") return "floorColor";
+
+	if (letter === "Q") return "switch onColor";
+	if (letter === "R" || letter === "P") return "switch offColor";
 };
 
 

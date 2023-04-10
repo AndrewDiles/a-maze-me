@@ -1,7 +1,9 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import useStaggerDraw from "../hooks/useStaggerDraw";
 import world1, {worldColors} from "../worlds/data/world1";
-
+import removeTargetLettersFromLayout from "../helpers/removeTargetLettersFromLayout";
+import swapLettersFromLayout from "../helpers/swapLettersFromLayout";
+import GameContext from "./GameContext";
 const LevelContext = createContext(null);
 export default LevelContext;
 
@@ -13,30 +15,12 @@ const defaultState = {
 	...worldColors
 };
 
-const removeTargetLettersFromLayout = (layout, ...letters) => {
-	const newLayout = [];
-	layout.forEach((rowString)=>{
-		let newRowString = ""
-		for(let i = 0; i < rowString.length; i++) {
-			const current = rowString[i];
-			if (letters.some(letter => current === letter)) {
-				newRowString+="0"
-			} else {
-				newRowString += current
-			}
-		}
-		newLayout.push(newRowString)
-	})
-	return newLayout
-}
-
-
 export const LevelProvider = ({ children }) => {
   const [level, setLevel] = useState({ ...defaultState });
   const [dimensions, setDimensions] = useState({ x: 320, y: 320, size: 40 });
   const [draw, setDraw] = useState(false);
 	const setStaggerDraw = useStaggerDraw(draw, setDraw);
-	console.log(level.layout);
+	// const {modifySwitch} = useContext(GameContext);
 
   useEffect(() => {
     const manageDimensions = () => {
@@ -71,10 +55,17 @@ export const LevelProvider = ({ children }) => {
 		setLevel({...level, layout: newLayout});
 		setDraw(Date.now());
 	}
+	const flipSwitch = (newValue) => {
+		// off: P, on : T
+		const newLayout = swapLettersFromLayout(level.layout, newValue? "P" : "T", newValue? "T" : "P");
+		// modifySwitch(newValue);
+		setLevel({...level, layout: newLayout});
+		setDraw(Date.now());
+	}
 
   return (
     <LevelContext.Provider
-      value={{ level, setLevel, draw, setDraw, dimensions, unlockKey1, unlockKey2, unlockKey3 }}
+      value={{ level, setLevel, draw, setDraw, dimensions, unlockKey1, unlockKey2, unlockKey3, flipSwitch }}
     >
       {children}
     </LevelContext.Provider>
