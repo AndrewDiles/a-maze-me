@@ -1,3 +1,6 @@
+// this is the first world that introduces the basics of the game
+// namely what the player controls and how you escape from a level
+
 export const worldColors = {
   borderColor: "#000000", //"black",
   playerColor: "#FF0000", //"red",
@@ -11,14 +14,13 @@ export const worldColors = {
   floorColor: "#F8F8FF", //"ghostwhite",
 };
 
-const levels = [
+const levelsWithoutColors = [
   {
     name: "Your First Maze",
     rows: 5,
     cols: 7,
     layout: ["HAAAAAE", "D00000B", "DS000ZB", "D00000B", "GCCCCCF"],
     target: 1.5,
-    ...worldColors,
   },
   {
     name: "Four Rooms",
@@ -26,7 +28,6 @@ const levels = [
     cols: 6,
     layout: ["HAEHAE", "DS000B", "GCFG0F", "HAEH0E", "DZ000B", "GCFGCF"],
     target: 2.9,
-    ...worldColors,
   },
   {
     name: "My First Maze",
@@ -43,7 +44,6 @@ const levels = [
       "GCCCCFCF",
     ],
     target: 3.1,
-    ...worldColors,
   },
   {
     name: "Turned Around",
@@ -60,7 +60,6 @@ const levels = [
       "GCCCCCCCF",
     ],
     target: 5,
-    ...worldColors,
   },
   {
     name: "Tucked Away",
@@ -77,7 +76,6 @@ const levels = [
       "GCCCCCCCF",
     ],
     target: 6.8,
-    ...worldColors,
   },
   {
     name: "Getting Tricky With It",
@@ -96,7 +94,6 @@ const levels = [
       "GCFOF",
     ],
     target: 6.2,
-    ...worldColors,
   },
   {
     name: "Plinko",
@@ -119,7 +116,6 @@ const levels = [
       "LCLCLCL",
     ],
     target: 4.9,
-    ...worldColors,
   },
   {
     name: "Whirlpool",
@@ -138,7 +134,6 @@ const levels = [
       "GCCCCCCCCF",
     ],
     target: 20,
-    ...worldColors,
   },
   {
     name: "A Fork",
@@ -153,8 +148,7 @@ const levels = [
       "GCCCCCCCCF",
     ],
     target: 11,
-    ...worldColors,
   },
 ];
 
-export default levels;
+export default levelsWithoutColors.map(level => {return {...level, ...worldColors}});

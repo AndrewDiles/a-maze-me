@@ -1,3 +1,5 @@
+// this is the second world that introduces the levers and switch bridges
+
 export const worldColors = {
   borderColor: "#000000", //"black",
   playerColor: "#FF0000", //"red",
@@ -11,115 +13,109 @@ export const worldColors = {
   floorColor: "#F8F8FF", //"ghostwhite",
 };
 
-const levels = [
+const levelsWithoutColors = [
   {
-    name: "learning the key",
-    rows: 10,
-    cols: 10,
+    name: "turn it on",
+    rows: 5,
+    cols: 8,
+    layout: ["HAAEOHAE", "D0QaOd0B", "DS00P0ZB", "D00bOc0B", "GCCFOGCF"],
+    target: 2,
+  },
+  {
+    name: "flip flop",
+    rows: 11,
+    cols: 11,
     layout: [
-      "HAAHAEAAAE",
-      "Dp0DuB00ZB",
-      "D00GsFCC0B",
-      "D000000B0B",
-      "DS0000BA0B",
-      "D00000B0EE",
-      "D00000B0WB",
-      "HAE000BCFB",
-      "DUw000000B",
-      "GCFCCCCCCF",
+      "HAAAEOHAAAE",
+      "D00RaOd000B",
+      "DS000P0000B",
+      "D00QbOcQ0RB",
+      "GCCCFOGc0bF",
+      "OOOOOOOOPOO",
+      "HAEOHAEO0aE",
+      "D0aOdRaO0RB",
+      "DZ0P000P00B",
+      "D0bOcQbOcQB",
+      "GCFOGCFOGCF",
     ],
-    target: 13,
-    ...worldColors,
+    target: 8.75,
+  },
+  {
+    name: "take a hike",
+    rows: 9,
+    cols: 11,
+    layout: [
+      "OHAAAAAAEOO",
+      "ZPS00000aEO",
+      "OD0000000aE",
+      "HdHAAEE000B",
+      "DHdQOBB000B",
+      "DGc0OBaAAEB",
+      "D0GcOB0HDBB",
+      "GcR0O00DDBB",
+      "OLOGOCCCGCF",
+    ],
+    target: 16,
+  },
+  {
+    name: "choose your destiny",
+    rows: 9,
+    cols: 18,
+    layout: [
+      "OOOOHOAAAOAAEOOOOO",
+      "OOQ00O0O0O0OaEOHAE",
+      "OS000O0O0O0O00P00B",
+      "OOR0000O000ObFODOB",
+      "OOOOOOOOOOOOOOHdOB",
+      "O0000000000000Q0OB",
+      "OPGcOOOOOOOOOOOOOB",
+      "OZODO000O000O0R0OB",
+      "OOOGCCOCCCOCCCCCCF",
+    ],
+    target: 20.5,
+  },
+  {
+    name: "be picky",
+    rows: 10,
+    cols: 14,
+    layout: [
+      "HAAAAAAAAAOAAE",
+      "D00OOOOOOPO00B",
+      "DQ0P0000O0000B",
+      "D00OOOOOOOOOAJ",
+      "DS000000000P0J",
+      "D00OOOOOOOOO0J",
+      "DR000000O00B0J",
+      "D00OOOOOd0ZB0L",
+      "D000000P0NcB0B",
+      "GCCOOOOOCGIICF",
+    ],
+    target: 6.5,
   },
 	{
-
-		name: "what the flip",
-
-		rows: 6,
-		
-		cols: 10,
-		
-		layout:[
-		"OOAEAAAAOO",
-		
-		"O00Bc0Q0RO",
-		
-		"DSQ0PAA00B",
-		
-		"HvAEhAAAAE",
-		
-		"O0ZB0Q0RuO",
-		
-		"OOCFCCCCOO",
-		
+		"name": "inconvenient",
+		"rows": 13,
+		"cols": 13,
+		"layout":[
+		"HAAAHAAAAAAAE",
+		"D000DHAAE0AEB",
+		"D0S0000RQJ0BB",
+		"D000DHEAOdCFB",
+		"D000D0B0PAd0B",
+		"GC0CDbF0OAAAE",
+		"D0000H000R0QB",
+		"DOOO0DCCCCC0B",
+		"D000cIg000ePO",
+		"DAM0DDAAAAA0B",
+		"GCFCL0000000B",
+		"DZ0P0R00000QB",
+		"GCFOGCCCCCCCF",
 		],
-		target: 13,
-		...worldColors,
+		"target": 20,
 	},
-  {
-    name: "?? 2",
-    rows: 5,
-    cols: 7,
-    layout: ["HAAAAAE", "D00000B", "DS000ZB", "D00000B", "GCCCCCF"],
-    ...worldColors,
-  },
-  {
-    name: "?? 3",
-    rows: 6,
-    cols: 6,
-    layout: ["HAEHAE", "DS000B", "GCFG0F", "HAEH0E", "DZ000B", "GCFGCF"],
-    ...worldColors,
-  },
-  {
-    name: "?? 4",
-    rows: 8,
-    cols: 9,
-    layout: [
-      "HAAAAAAAE",
-      "DS000B00B",
-      "D0000B00B",
-      "GCCCCF00B",
-      "D0000000B",
-      "DOOOOO00B",
-      "DZOOOO00B",
-      "GCCCCCCCF",
-    ],
-    ...worldColors,
-  },
-  {
-    name: "?? 5",
-    rows: 8,
-    cols: 9,
-    layout: [
-      "HAAAAAAAE",
-      "DZO00000B",
-      "DOO00000B",
-      "D000OOOOB",
-      "D000O000B",
-      "DOOOO000B",
-      "D000000SB",
-      "GCCCCCCCF",
-    ],
-    ...worldColors,
-  },
-  {
-    name: "?? 6",
-    rows: 10,
-    cols: 5,
-    layout: [
-      "HAAAE",
-      "D0S0B",
-      "HAAAB",
-      "DCCCF",
-      "D000B",
-      "DCCCB",
-      "DDGcF",
-      "DDEGB",
-      "DGBZB",
-      "GCFOF",
-    ],
-    ...worldColors,
-  },
+
+
+
   {
     name: "?? 7",
     rows: 6,
@@ -132,7 +128,6 @@ const levels = [
       "DOO0OOCCFB",
       "GCCCCCCCCF",
     ],
-    ...worldColors,
   },
   {
     name: "?? 8",
@@ -148,30 +143,35 @@ const levels = [
       "D0000BZB",
       "GCCCCFCF",
     ],
-    ...worldColors,
   },
+
+
   {
-    name: "?? 9",
-    rows: 14,
-    cols: 7,
-    layout: [
-      "HAAAAAE",
-      "D00S00B",
-      "JJJJJJJ",
-      "D00000B",
-      "DjjjjjB",
-      "DiiiiiB",
-      "DlfofkB",
-      "DfffffB",
-      "DhhhhhB",
-      "DijfijB",
-      "GooCooF",
-      "D00000B",
-      "J0JZJ0J",
-      "LCLCLCL",
-    ],
-    ...worldColors,
+"name": "lever graduation",
+"rows": 16,
+"cols": 30,
+"layout":[
+	"OOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+	"OZPS000000D00000000BCCc000000O",
+	"OOORMAAAADDMIIIIIGFbCCKc0bFOPO",
+	"OQP000BE0GCfF00000bF000K0H00QO",
+	"O0OCCcBB000L00PIIIK0bCCbFdOO0O",
+	"O0000GFaECCCCC0CCCCCF0BF00OO0O",
+	"O0H000D000000BRD00000000bOdB0O",
+	"O000G0D0000HAB0D0000CCCCB0RB0O",
+	"O00000D0Q00D0F0DQ000Pc0eI00B0O",
+	"O0E000GCCCCGCCFd00000DCCCC0B0O",
+	"O000F0000D0000B0000N0Jd00B0B0O",
+	"O00000000D000DaEPGCJ0J0N0B0B0O",
+	"O0G000D000000D000R0J0L0J0BCB0O",
+	"OCCCCCGCCCCCCCCCCCCJCCCJCCCF0O",
+	"O0000000000000000000000000000O",
+	"OOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+	],
+"target": 40,
   },
 ];
 
-export default levels;
+export default levelsWithoutColors.map((level) => {
+  return { ...level, ...worldColors };
+});
