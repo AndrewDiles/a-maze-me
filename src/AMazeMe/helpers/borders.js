@@ -222,6 +222,7 @@ export default {
   },
 
 	// switch bars
+	// in game will be done with a sprite, and will be half sized
 	P: (p) => {
 		p.building && drawBorder("left", p);
 		p.building && drawBorder("right", p)
