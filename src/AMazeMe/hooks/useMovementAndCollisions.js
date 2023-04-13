@@ -67,12 +67,12 @@ const useMovementAndCollisions = ({ hasStarted, hasEnded }) => {
       } else if (collisions.includes("turn switch on")) {
 				if (!game.switch) {
 					flipSwitch(true);
-					newSwitchValue = true; //////
+					newSwitchValue = true;
 				}
 			} else if (collisions.includes("turn switch off")) {
 				if (game.switch) {
 					flipSwitch(false);
-					newSwitchValue = false; /////
+					newSwitchValue = false;
 				}
 			}
       return newPlayerObject;

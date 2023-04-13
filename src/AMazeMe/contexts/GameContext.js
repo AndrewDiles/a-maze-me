@@ -52,9 +52,6 @@ export const GameProvider = ({ children }) => {
   const updateLocations = ({ newPlayers, newEnemies, newSwitchValue }) => {
     setGame({ ...game, players: newPlayers, enemies: newEnemies, switch: newSwitchValue });
   };
-	// const modifySwitch = (newValue) => {
-	// 	setGame({...game, switch: newValue ? true : false})
-	// }
   const initializeGameWin = ({ newPlayers, newEnemies }) => {
     const newGoals = game.goals.map((goal) => {
       return { ...goal, animation: "popping" };
@@ -170,7 +167,6 @@ export const GameProvider = ({ children }) => {
         initializeGame,
         startTimer,
         updateLocations,
-				// modifySwitch,
         initializeGameWin,
         winGame,
         openSlotSelect,

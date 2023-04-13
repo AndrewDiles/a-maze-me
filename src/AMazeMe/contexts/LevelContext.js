@@ -20,7 +20,6 @@ export const LevelProvider = ({ children }) => {
   const [dimensions, setDimensions] = useState({ x: 320, y: 320, size: 40 });
   const [draw, setDraw] = useState(false);
 	const setStaggerDraw = useStaggerDraw(draw, setDraw);
-	// const {modifySwitch} = useContext(GameContext);
 
   useEffect(() => {
     const manageDimensions = () => {
@@ -58,7 +57,6 @@ export const LevelProvider = ({ children }) => {
 	const flipSwitch = (newValue) => {
 		// off: P, on : T
 		const newLayout = swapLettersFromLayout(level.layout, newValue? "P" : "T", newValue? "T" : "P");
-		// modifySwitch(newValue);
 		setLevel({...level, layout: newLayout});
 		setDraw(Date.now());
 	}
