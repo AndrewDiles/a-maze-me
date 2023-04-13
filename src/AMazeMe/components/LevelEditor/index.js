@@ -48,15 +48,15 @@ export default () => {
     }
   }, [draw]);
 
-  useEffect(() => {
-    setDraw(false);
-    const timer = setTimeout(() => {
-      setDraw(Date.now());
-    }, 250);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [game.subview]);
+  // useEffect(() => {
+  //   setDraw(false);
+  //   const timer = setTimeout(() => {
+  //     setDraw(Date.now());
+  //   }, 250);
+  //   return () => {
+  //     clearTimeout(timer);
+  //   };
+  // }, [game.subview]);
 
   return (
     <>

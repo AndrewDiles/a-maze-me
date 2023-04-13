@@ -13,14 +13,15 @@ export default () => {
 			<SetColors/>
 			<Warnings/>
 			<h3>level output:</h3>
+			&#123;
 			{levelKeys.map((key, index) => {
-				if (typeof level[key] ==="string") return <p key={key}>{key}: "{level[key]}"{index +1 !== levelKeys.length && ","}</p>
-				if (typeof level[key] ==="number") return <p key={key}>{key}: {level[key]}{index +1 !== levelKeys.length && ","}</p>
-				return <span key={key}>{key}:[
+				if (typeof level[key] ==="string") return <p key={key}>"{key}": "{level[key]}"{index +1 !== levelKeys.length && ","}</p>
+				if (typeof level[key] ==="number") return <p key={key}>"{key}": {level[key]}{index +1 !== levelKeys.length && ","}</p>
+				return <span key={key}>"{key}":[
 					{level[key].map((layoutString, rowNum) => <p key = {`${layoutString}${rowNum}`}>"{layoutString}",</p>)}
-				]</span>
+				],</span>
 			})}
-
+			&#125;
 		</LevelOutputAndColorsContainer>
   );
 };
