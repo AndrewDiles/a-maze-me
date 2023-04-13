@@ -8,6 +8,7 @@ export default ({
   setSelection,
   levelNumber,
   unlocked,
+	targetMet
 }) => {
   return (
     <Level
@@ -15,6 +16,7 @@ export default ({
       disabled={disabled}
       selected={selected}
       worldSelected={worldSelected}
+			targetMet={targetMet}
       onClick={(ev) => {
         if (!worldSelected) return;
         ev.stopPropagation();
@@ -42,6 +44,7 @@ const Level = styled.button`
   border-radius: 0.2em;
   border-style: solid;
 	outline: ${({selected, worldSelected})=> worldSelected && selected && ".1em solid var(--color-a)"};
+	color: ${({targetMet})=>targetMet && "var(--color-accent)"};
   &:active {
     color: var(--color-a);
   }
