@@ -4,4 +4,4 @@ export const BOUNCE_MAGNITUDE = 8;
 export const MOVE_MAGNITUDE = 6;
 export const WIN_DELAY = 2000;
 ///// TODO: use this in multiple places
-export const MAX_WORLD_INDEX = 1;
+export const MAX_WORLD_INDEX = 3;

@@ -14,8 +14,38 @@ export const worldColors = {
 };
 
 const levelsWithoutColors = [
-  
-
+	{
+		"name": "turn key",
+		"rows": 5,
+		"cols": 10,
+		"layout":[
+		"OOOOOOOOOO",
+		"O00000t00O",
+		"O0p0S0tZ0O",
+		"O00000t00O",
+		"OOOOOOOOOO",
+		],
+		"target": 2.5,
+	},
+	{
+		"name": "turn keys",
+		"rows": 11,
+		"cols": 11,
+		"layout":[
+		"OOOOOOOOOOO",
+		"O00EOOOH00O",
+		"O00aEOHd00O",
+		"OOOO0p0OOOO",
+		"O00r000y00O",
+		"O0ur0S0yU0O",
+		"O00r000y00O",
+		"OOOOVVVOOOO",
+		"OOOO0Z0OOOO",
+		"OOOO000OOOO",
+		"OOOOOOOOOOO",
+		],
+		"target": 5.25,
+	},
 
 
 

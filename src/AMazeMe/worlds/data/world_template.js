@@ -15,9 +15,9 @@ export const worldColors = {
 
 const levelsWithoutColors = [
   {
-    name: "?? 1",
-    rows: 5,
-    cols: 7,
+    name: "coming soon",
+    rows: 3,
+    cols: 3,
     layout: ["HAAAAAE", "D00000B", "DS000ZB", "D00000B", "GCCCCCF"],
     target: 100,
   },
