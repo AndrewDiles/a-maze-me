@@ -1,7 +1,6 @@
-import { useContext, useRef, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import useWASDSelectedCell from "../../hooks/useWASDSelectedCell";
 import LevelContext from "../../contexts/LevelContext";
-import GameContext from "../../contexts/GameContext";
 import Header from "../reused/Header";
 import TopButtons from "./TopButtons";
 import TilesMovementAndReDraw from "./TilesMovementAndReDraw";
@@ -9,54 +8,18 @@ import TileOptions from "./TileOptions";
 import SetLevelOptions from "./SetLevelOptions";
 import CellButtons from "./CellButtons";
 import ColorsAndLevelOutput from "./ColorsAndLevelOutput";
-
-import borders from "../../helpers/borders";
-import calcColorKey from "../../helpers/calcColorKey";
+import useDrawEditor from "../../hooks/useDrawEditor";
 import styled from "styled-components";
 
 export default () => {
-  const { level, dimensions, draw, setDraw } = useContext(LevelContext);
-  const { game } = useContext(GameContext);
-  const canvas = useRef(null);
+  const { level, dimensions} = useContext(LevelContext);
   const [selectedCell, setSelectedCell] = useWASDSelectedCell(
     level.rows,
     level.cols
   );
   const [tilesOnRight, setTilesOnRight] = useState(true);
 
-  useEffect(() => {
-    if (draw) {
-      canvas.current
-        .getContext("2d")
-        .clearRect(0, 0, dimensions.x, dimensions.y);
-      level.layout.forEach((layoutRow, rowNumber) => {
-        for (let colNumber = 0; colNumber < layoutRow.length; colNumber++) {
-          borders[layoutRow[colNumber]] && borders[layoutRow[colNumber]]({
-            c: canvas.current,
-            x: dimensions.size * colNumber,
-            y: dimensions.size * rowNumber,
-            size: dimensions.size,
-            color: level[calcColorKey(layoutRow[colNumber])],
-						borderColor: level.borderColor,
-						switchOn: game.switch,
-            floor: level.floorColor,
-            building: true,
-          });
-        }
-      });
-      setDraw(false);
-    }
-  }, [draw]);
-
-  // useEffect(() => {
-  //   setDraw(false);
-  //   const timer = setTimeout(() => {
-  //     setDraw(Date.now());
-  //   }, 250);
-  //   return () => {
-  //     clearTimeout(timer);
-  //   };
-  // }, [game.subview]);
+	const canvas = useDrawEditor();
 
   return (
     <>

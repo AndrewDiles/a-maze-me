@@ -8,12 +8,14 @@ import styled from "styled-components";
 
 export default ({ keyToChange }) => {
   const { level, setLevel } = useContext(LevelContext);
-
+  const savedLevel = window.localStorage.getItem("custom-map");
   return (
     <Label>
       {keyToChange === "rows" ? "Rows: " : "Cols: "}
       <select
-        defaultValue={level[keyToChange]}
+        defaultValue={
+          savedLevel ? JSON.parse(savedLevel)[keyToChange] : level[keyToChange]
+        }
         onChange={(ev) => {
           const { value } = ev.target;
           const newValue = parseInt(value);
@@ -29,7 +31,6 @@ export default ({ keyToChange }) => {
               }),
             };
           });
-					
         }}
       >
         {createNumberedArray(50).map((n) => (
@@ -42,7 +43,6 @@ export default ({ keyToChange }) => {
   );
 };
 
-
 const Label = styled.label`
-padding: 0 1em;
-`
+  padding: 0 1em;
+`;
