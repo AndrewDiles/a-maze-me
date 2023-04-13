@@ -11,12 +11,12 @@ My intent is to make a simple maze game that uses the arrow keys and wasd for mo
 - ✅ World Select
 - ✅ Level Select
 - Play an uploaded level (do this at during slot selection)
-- ~~Tracking minimum number of moves to win~~ (invalid as movement is now px based)
+- ~~Tracking minimum number of moves to win~~ (invalid as movement is not cell based)
 - ✅ Tracking target times to win
 - ✅ Trcking which levels have been unlocked
 - ✅ Ability to upload a json file for custom levels
 - ✅local storage for save files and custom levels
-- Make WASD controls for all menus
+- Make WASD controls for all menus (most are done)
 
 ## Stretch Goals:
 
