@@ -41,7 +41,6 @@ export default () => {
   if (!board.current) return null;
 
   const x = board.current.getBoundingClientRect().x;
-	console.log(game.switch)
   return (
     <>
       {game.players.map((playerInfo, index) => {
@@ -76,16 +75,31 @@ export default () => {
       })}
       {game.switches.map((switchInfo, index) => {
         const top = size * (switchInfo.y / 100);
-        const left = size + size * (switchInfo.x / 100);
+        const left = x + size * (switchInfo.x / 100);
         return (
           <Switch
             key={index}
-            color={playerColor}
+            color={level.floorColor}
             top={top}
             left={left}
             size={size}
           >
-            {game.switch ? "open" : "closed"}
+            <BarsContainer color={level.floorColor} active={game.switch}>
+              <SwitchBar
+                color={
+                  game.switch
+                    ? level["switch onColor"]
+                    : level["switch offColor"]
+                }
+              />
+              <SwitchBar
+                color={
+                  game.switch
+                    ? level["switch onColor"]
+                    : level["switch offColor"]
+                }
+              />
+            </BarsContainer>
           </Switch>
         );
       })}
@@ -150,6 +164,7 @@ const Goal = styled(Square)`
 
 const Switch = styled.div.attrs((props) => ({
   style: {
+		backgroundColor: props.color,
     transform: `translate(${props.left}px, ${props.top}px)`,
     height: `${props.size}px`,
     width: `${props.size}px`,
@@ -163,5 +178,22 @@ const Switch = styled.div.attrs((props) => ({
   z-index: 10;
   transition-property: transform;
   transition-timing-function: ease-in-out;
-	background-color: silver;
+`;
+const BarsContainer = styled.div.attrs((props) => ({
+  style: {
+		backgroundColor: props.color,
+  },
+}))`
+  height: 100%;
+  transform: rotate(${({ active }) => (active ? "0deg" : "90deg")});
+  transition: transform ease-in-out 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+const SwitchBar = styled.div`
+  width: 100%;
+  height: 10%;
+  background-color: ${({ color }) => color};
+  transition: background-color ease-in-out 0.3s;
 `;
