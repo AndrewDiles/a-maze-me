@@ -5,5 +5,5 @@ import Button from "./Button";
 export default ({lowerCased}) => {
   const { returnToMenu } = useContext(GameContext);
 
-  return <Button onClick={returnToMenu}>{lowerCased ? "back to menu":"BACK TO MENU"}</Button>;
+  return <Button id = "back-to-menu-button" onClick={returnToMenu}>{lowerCased ? "back to menu":"BACK TO MENU"}</Button>;
 };

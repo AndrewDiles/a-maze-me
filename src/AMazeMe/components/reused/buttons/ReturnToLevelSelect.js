@@ -5,5 +5,5 @@ import Button from "./Button";
 export default () => {
   const { openLevelSelect } = useContext(GameContext);
 
-  return <Button onClick={openLevelSelect}>back to level select</Button>;
+  return <Button id="back-to-level-select-button" onClick={openLevelSelect}>back to level select</Button>;
 };
