@@ -2,27 +2,39 @@ import { useContext } from "react";
 import GameContext from "../../../contexts/GameContext";
 import styled from "styled-components";
 import ReturnToLevelSelect from "../../reused/buttons/ReturnToLevelSelect";
+import ReplayLevelButton from "../../reused/buttons/ReplayLevelButton";
 import Button from "../../reused/buttons/Button";
+import useKeyBoardToNavigateButtonsAndFocus from "../../../hooks/useKeyBoardToNavigateButtonsAndFocus";
 import { MAX_WORLD_INDEX } from "../../../constants/general";
 
+const idToFocus = "replay-button";
+const buttonsIdArray = ["back-to-level-select-button", idToFocus, "play-next-level-button"];
+
 export default () => {
-  const { game, replayLevel, playNextLevel } = useContext(GameContext);
+  const { game, playNextLevel } = useContext(GameContext);
   const { world, level } = game;
-	const nextLevelExists = world < MAX_WORLD_INDEX || level < 8
-	
+  const nextLevelExists = world < MAX_WORLD_INDEX || level < 8;
+
+	useKeyBoardToNavigateButtonsAndFocus({buttonsIdArray, idToFocus})
+
   return (
     <ButtonsContainer>
       <ReturnToLevelSelect />
-			<Button onClick={replayLevel}>replay level</Button>
-			{nextLevelExists && <Button onClick={playNextLevel}>play next level</Button>}
+			<ReplayLevelButton/>
+      {nextLevelExists && (
+        <Button id = {buttonsIdArray[2]} onClick={playNextLevel}>play next level</Button>
+      )}
     </ButtonsContainer>
   );
 };
 
 const ButtonsContainer = styled.section`
   position: relative;
-  margin-top: 70px;
-	margin-bottom: 1.5em;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1100px;
+	margin: 70px auto 1.5em;
   & button {
     margin: 0.5em 1em;
   }
