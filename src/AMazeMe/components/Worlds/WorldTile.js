@@ -1,13 +1,12 @@
 import { useContext } from "react";
+import worlds from "../../worlds";
 import styled from "styled-components";
 import LockedLevel from "./LockedLevel";
 import Level from "./Level";
 import RecordsContext from "../../contexts/RecordsContext";
-import SaveCustomLevelToLocalStorage from "../reused/buttons/SaveCustomLevelToLocalStorage";
 
-const calcTransX = (diff) => {
-  // f(d) = (125/2|d| - 75, -5d - 10)
-  // const x = ((-125/2) * diff) - 50;
+
+const calcTrans = (diff) => {
   const x = -50 * Math.log(Math.abs(diff) + 1) * Math.sign(diff) - 50;
   const y = -8 * Math.abs(diff) - 10;
   return `${x}%, ${y}%`;
@@ -31,6 +30,11 @@ export default ({ worldNumber, selection, setSelection }) => {
   // if > 0, should be on left
   // if < 0, should be on right
   const worldUnlocked = selectedRecords.length > worldNumber;
+	const allWorldTargetsMet = worldUnlocked && produceLevelArray().every(levelNumber => {
+		const progressArray = selectedRecords[selection.worldIndex];
+		console.log(progressArray);
+		return progressArray && progressArray[levelNumber - 1] && progressArray[levelNumber - 1]["best time"] < worlds[worldNumber][levelNumber-1].target 
+	})
   return (
     <Tile
       onClick={() => {
@@ -39,8 +43,9 @@ export default ({ worldNumber, selection, setSelection }) => {
       worldUnlocked={worldUnlocked}
       selected={selected}
       zIndex={100 - Math.abs(differenceFromSelected) * 5}
-      trans={calcTransX(differenceFromSelected)}
+      trans={calcTrans(differenceFromSelected)}
     >
+			<WorldNumber allWorldTargetsMet = {allWorldTargetsMet} >world {worldNumber + 1}</WorldNumber>
       {worldUnlocked ? (
         produceLevelArray().map((levelNumber) => {
           const progressArray = selectedRecords[selection.worldIndex];
@@ -51,7 +56,7 @@ export default ({ worldNumber, selection, setSelection }) => {
               ? true
               : false
             : false;
-						
+					const targetMet = progressArray && progressArray[levelNumber - 1] && progressArray[levelNumber - 1]["best time"] < worlds[worldNumber][levelNumber-1].target 
           return (
             <Level
               key={levelNumber}
@@ -62,6 +67,7 @@ export default ({ worldNumber, selection, setSelection }) => {
               setSelection={setSelection}
               levelNumber={levelNumber}
               unlocked={unlocked}
+							targetMet = {targetMet}
             />
           );
         })
@@ -124,3 +130,15 @@ const Tile = styled.div`
     cursor: ${({ selected }) => !selected && "pointer"};
   }
 `;
+
+const WorldNumber  = styled.h3`
+	position: absolute;
+	font-size: .5em;
+	top: 0;
+	margin: 0;
+	width: 100%;
+	transform: translateY(-75%);
+	letter-spacing: .1em;
+	text-shadow: ${({allWorldTargetsMet})=>allWorldTargetsMet ? "-1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF" : "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"};
+	color: ${({allWorldTargetsMet})=>allWorldTargetsMet && "var(--color-accent)"};
+`
