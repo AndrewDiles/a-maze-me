@@ -3,11 +3,21 @@ import GameContext from "../../../contexts/GameContext";
 import Button from "./Button";
 import useFocusIdOnMount from "../../../hooks/useFocusIdOnMount";
 
-const idToFocus = "play-button"
+const idToFocus = "play-button";
 
-export default ({worldToPlay, levelToPlay, disabled}) => {
+export default ({ worldToPlay, levelToPlay, disabled }) => {
   const { playLevel } = useContext(GameContext);
-	useFocusIdOnMount(idToFocus);
+  useFocusIdOnMount(idToFocus);
 
-  return <Button id = {disabled ? "disabled-play-button" : idToFocus} disabled = {disabled} onClick={()=>{playLevel({worldToPlay, levelToPlay})}}>{disabled ? "locked":"play level"}</Button>;
+  return (
+    <Button
+      id={idToFocus}
+      // disabled={disabled}  removing this as it is causing issues with the WASD events
+      onClick={() => {
+        !disabled && playLevel({ worldToPlay, levelToPlay });
+      }}
+    >
+      {disabled ? "locked" : "play level"}
+    </Button>
+  );
 };

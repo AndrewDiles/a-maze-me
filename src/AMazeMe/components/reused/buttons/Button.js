@@ -8,6 +8,7 @@ export default ({ id, className, onClick, disabled, children }) => {
   return (
     <Button
       id={id}
+			// tabIndex = {tabIndex && tabIndex}
       className={className}
       disabled={disabled}
       onMouseEnter={({ target }) => {
