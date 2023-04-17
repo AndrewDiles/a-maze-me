@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import RecordsContext from "../../contexts/RecordsContext";
+import useWASDSelectLevel from "../../hooks/useWASDSelectLevel";
 import NameAndRecordDisplay from "./NameAndRecordDisplay";
 import SelectionIndicator from "./SelectionIndicator";
 import WorldTile from "./WorldTile";
@@ -8,6 +9,7 @@ import CenteredColumn from "../reused/CenteredColumn";
 import Header from "../reused/Header";
 import styled from "styled-components";
 import PlayButton from "../reused/buttons/PlayButton";
+import ReturnToSlotSelect from "../reused/buttons/ReturnToSlotSelect";
 import ReturnToMenu from "../reused/buttons/ReturnToMenu";
 import findRecordsAndUnlocked from "../../helpers/findRecordsAndUnlocked";
 import worlds from "../../worlds";
@@ -20,11 +22,7 @@ while (worldArray.length <= MAX_WORLD_INDEX) {
 
 export default () => {
   const { selectedRecords } = useContext(RecordsContext);
-  const [selection, setSelection] = useState(() => {
-    const worldIndex = Math.min(selectedRecords.length - 1, MAX_WORLD_INDEX);
-    const levelIndex = selectedRecords[worldIndex].length;
-    return { worldIndex, levelIndex };
-  });
+	const [selection, setSelection] = useWASDSelectLevel(selectedRecords);
 	
 
 	const {records, unlocked} = findRecordsAndUnlocked({selectedRecords, selection})
@@ -46,6 +44,7 @@ export default () => {
           />
         ))}
       </WorldsContainer>
+			<ReturnToSlotSelect/>
 			<ReturnToMenu lowerCased={true}/>
     </CenteredColumn>
   );

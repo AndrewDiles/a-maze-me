@@ -7,12 +7,14 @@ export default ({
   selection,
   setSelection,
   levelNumber,
+	worldNumber,
   unlocked,
 	targetMet
 }) => {
   return (
     <Level
       as={worldSelected ? "button" : "span"}
+			id={`level ${levelNumber} world ${worldNumber+1} button`}
       disabled={disabled}
       selected={selected}
       worldSelected={worldSelected}

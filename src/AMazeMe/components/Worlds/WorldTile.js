@@ -5,7 +5,6 @@ import LockedLevel from "./LockedLevel";
 import Level from "./Level";
 import RecordsContext from "../../contexts/RecordsContext";
 
-
 const calcTrans = (diff) => {
   const x = -50 * Math.log(Math.abs(diff) + 1) * Math.sign(diff) - 50;
   const y = -8 * Math.abs(diff) - 10;
@@ -32,7 +31,6 @@ export default ({ worldNumber, selection, setSelection }) => {
   const worldUnlocked = selectedRecords.length > worldNumber;
 	const allWorldTargetsMet = worldUnlocked && produceLevelArray().every(levelNumber => {
 		const progressArray = selectedRecords[selection.worldIndex];
-		console.log(progressArray);
 		return progressArray && progressArray[levelNumber - 1] && progressArray[levelNumber - 1]["best time"] < worlds[worldNumber][levelNumber-1].target 
 	})
   return (
@@ -42,6 +40,7 @@ export default ({ worldNumber, selection, setSelection }) => {
       }}
       worldUnlocked={worldUnlocked}
       selected={selected}
+			simulateFocusColor = {!worldUnlocked && selected && (!document.activeElement||!document.activeElement.id.includes("button"))}
       zIndex={100 - Math.abs(differenceFromSelected) * 5}
       trans={calcTrans(differenceFromSelected)}
     >
@@ -62,10 +61,11 @@ export default ({ worldNumber, selection, setSelection }) => {
               key={levelNumber}
               worldSelected={selected}
               disabled={differenceFromSelected !== 0}
-              selected={levelNumber === selection.levelIndex + 1}
+              selected={selected && levelNumber === selection.levelIndex + 1}
               selection={selection}
               setSelection={setSelection}
               levelNumber={levelNumber}
+							worldNumber={worldNumber}
               unlocked={unlocked}
 							targetMet = {targetMet}
             />
@@ -81,7 +81,7 @@ export default ({ worldNumber, selection, setSelection }) => {
 const Tile = styled.div`
   position: absolute;
   border: 0.5em
-    var(${({ selected }) => (selected ? "--color-a" : "--color-border")}) double;
+    var(${({ selected, simulateFocusColor }) => (simulateFocusColor ? "--color-f":selected ? "--color-a" : "--color-border")}) double;
   border-radius: 1em;
   display: ${({ worldUnlocked }) => (worldUnlocked ? "grid" : "flex")};
   grid-template-columns: repeat(3, 1fr);

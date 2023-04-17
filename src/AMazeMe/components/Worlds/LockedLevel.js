@@ -9,7 +9,7 @@ export default ({ worldNumber }) => {
 const LockedLevel = styled.p`
 position: relative;
   margin: auto;
-  color: var(--color-accent);
+  color: var(--color-text);
   justify-content: center;
   display: flex;
   height: 100%;

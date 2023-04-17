@@ -19,6 +19,8 @@ export const RecordsProvider = ({ children }) => {
         records1,
         records2,
         records3,
+				records,
+				setters,
         selectedSlot,
         setSelectedSlot,
         selectedRecords: records[selectedSlot],

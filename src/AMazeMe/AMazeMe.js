@@ -1,7 +1,7 @@
 import { RecordsProvider } from "./contexts/RecordsContext";
 import { LevelProvider } from "./contexts/LevelContext";
 import { GameProvider } from "./contexts/GameContext";
-import GlobalStyles from "./components/GlobalStyles"
+import GlobalStyles from "./components/GlobalStyles";
 import ComponentGenerator from "./components/ComponentGenerator";
 
 export default () => {
@@ -9,7 +9,7 @@ export default () => {
     <GameProvider>
       <LevelProvider>
         <RecordsProvider>
-					<GlobalStyles/>
+          <GlobalStyles />
           <ComponentGenerator />
         </RecordsProvider>
       </LevelProvider>
