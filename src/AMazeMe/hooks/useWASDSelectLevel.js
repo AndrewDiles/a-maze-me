@@ -40,6 +40,7 @@ const useWASDSelectLevel = (selectedRecords) => {
   // shape of a level button: `level ${levelNumber} world ${worldNumber} button`
   useEffect(() => {
     const handleKeyPress = ({ key }) => {
+			key = key.toLowerCase();
       if (
         document.activeElement &&
         document.activeElement.id &&

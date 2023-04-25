@@ -15,6 +15,7 @@ const useWASDSelectedCell = () => {
 
   useEffect(() => {
     const handleKeyDown = ({ key }) => {
+			key = key.toLowerCase();
       // console.log(key);
       switch (key) {
         case "w":
@@ -32,6 +33,7 @@ const useWASDSelectedCell = () => {
       }
     };
 		const handleKeyUp = ({ key }) => {
+			key = key.toLowerCase();
       switch (key) {
         case "w":
         case "ArrowUp":

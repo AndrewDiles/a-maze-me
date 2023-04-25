@@ -9,6 +9,7 @@ const useWASDSelectedCell = (maxRows, maxCols) => {
 
   useEffect(() => {
     const handleKeyPress = ({ key }) => {
+			key = key.toLowerCase();
 			if (document.activeElement && document.activeElement.id === "name-input") return;
       switch (key) {
         case "w": {

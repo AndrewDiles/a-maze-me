@@ -39,6 +39,7 @@ const useKeyBoardToNavigateButtonsAndFocus = ({ buttonsIdArray, idToFocus }) => 
 
   useEffect(() => {
     const handleKeyPress = ({ key }) => {
+			key = key.toLowerCase();
       switch (key) {
         case "w":
         case "a":
