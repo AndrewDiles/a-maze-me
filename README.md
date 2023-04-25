@@ -6,6 +6,9 @@ I find most games are far too difficult (especially for my 2 year old).  Yes the
 
 My intent is to make a simple maze game that uses the arrow keys and wasd for movement.
 
+Currently deployed at:
+https://a-maze-m3.web.app/
+
 ## MVPs:
 
 - ✅ World Select
