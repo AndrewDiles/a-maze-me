@@ -31,7 +31,7 @@ const drawKey = (ctx, x, y, size, floor) => {
 }
 // TODO draw switches
 const drawSwitchOn= (ctx, x, y, size, activeColor, borderColor, isActive) => {
-	ctx.fillStyle = isActive ? activeColor : borderColor;
+	ctx.fillStyle = activeColor;
 	ctx.beginPath();
 	ctx.lineTo(x +0.5 * size,y+0.55 * size);
 	ctx.lineTo(x +0.7 * size,y+0.2 * size);
@@ -47,7 +47,7 @@ const drawSwitchOn= (ctx, x, y, size, activeColor, borderColor, isActive) => {
 	ctx.closePath();
 	ctx.fill();
 	ctx.stroke();
-	ctx.fillStyle = activeColor;
+	ctx.fillStyle = isActive ? activeColor : borderColor;;
 	ctx.beginPath();
 	ctx.arc(x + 0.5025 * size, y + 0.83 * size, 0.25 * size, 1 * Math.PI, 2 * Math.PI);
 	ctx.closePath();
@@ -56,7 +56,7 @@ const drawSwitchOn= (ctx, x, y, size, activeColor, borderColor, isActive) => {
 }
 
 const drawSwitchOff = (ctx, x, y, size, activeColor, borderColor, isActive) => {
-	ctx.fillStyle = isActive ? activeColor : borderColor;
+	ctx.fillStyle = activeColor;
 	ctx.beginPath();
 	ctx.lineTo(x +0.5 * size,y+0.55 * size);
 	ctx.lineTo(x +0.3 * size,y+0.2 * size);
@@ -72,7 +72,7 @@ const drawSwitchOff = (ctx, x, y, size, activeColor, borderColor, isActive) => {
 	ctx.closePath();
 	ctx.fill();
 	ctx.stroke();
-	ctx.fillStyle = activeColor;
+	ctx.fillStyle = isActive ? activeColor : borderColor;;
 	ctx.beginPath();
 	ctx.arc(x + 0.5025 * size, y + 0.83 * size, 0.25 * size, 1 * Math.PI, 2 * Math.PI);
 	ctx.closePath();
