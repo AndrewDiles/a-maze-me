@@ -43,8 +43,8 @@ const useKeyBoardToNavigateButtonsAndFocus = ({ buttonsIdArray, idToFocus }) => 
       switch (key) {
         case "w":
         case "a":
-        case "ArrowUp":
-        case "ArrowLeft": {
+        case "arrowup":
+        case "arrowleft": {
           if (document.activeElement) {
             // case something is focused
 
@@ -65,8 +65,8 @@ const useKeyBoardToNavigateButtonsAndFocus = ({ buttonsIdArray, idToFocus }) => 
 
         case "s":
         case "d":
-        case "ArrowDown":
-        case "ArrowRight": {
+        case "arrowdown":
+        case "arrowright": {
           if (document.activeElement) {
             // case something is focused
 
