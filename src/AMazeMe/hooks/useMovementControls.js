@@ -19,16 +19,16 @@ const useWASDSelectedCell = () => {
       // console.log(key);
       switch (key) {
         case "w":
-        case "ArrowUp":
+        case "arrowup":
           return upPress();
         case "a":
-        case "ArrowLeft":
+        case "arrowleft":
           return leftPress();
         case "s":
-        case "ArrowDown":
+        case "arrowdown":
           return downPress();
         case "d":
-        case "ArrowRight":
+        case "arrowright":
           return rightPress();
       }
     };
@@ -36,16 +36,16 @@ const useWASDSelectedCell = () => {
 			key = key.toLowerCase();
       switch (key) {
         case "w":
-        case "ArrowUp":
+        case "arrowup":
           return upUnpress();
         case "a":
-        case "ArrowLeft":
+        case "arrowleft":
           return leftUnpress();
         case "s":
-        case "ArrowDown":
+        case "arrowdown":
           return downUnpress();
         case "d":
-        case "ArrowRight":
+        case "arrowright":
           return rightUnpress();
       }
     };
