@@ -144,7 +144,6 @@ const SparklyHeader = styled.h3`
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
 	text-shadow: -1px -1px 0 yellow, 1px -1px 0 yellow, -1px 1px 0 yellow, 1px 1px 0 yellow;
 	letter-spacing: 4px;
 	margin-top: 500px;
