@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import styled, { keyframes } from "styled-components";
-// TODO: animate this component
 // I'm not going to make this responsive to window resizes after this has begun
 const fixedStarSize = 10; // [px]
-const widthRangeMultiplier = 5; // allows for one star per widthRangeMultiplier*fixedStarSize px less the gap of fixedStarSize
-const starMovementTime = 400; // [ms]
-const maxDelay = 3000; // [ms]
+const widthRangeMultiplier = 4; // allows for one star per widthRangeMultiplier*fixedStarSize px less the gap of fixedStarSize
+const starMovementTime = 500; // [ms]
+const maxDelay = 2000; // [ms]
 
 const move = keyframes`
   0% {
@@ -13,18 +12,20 @@ const move = keyframes`
 		opacity: 0;
 		scale: 0;
   }
-	25% {
-    offset-distance: 25%;
+	10% {
+    offset-distance: 10%;
 		opacity: 1;
 		scale: 1;
   }
 	75% {
     offset-distance: 75%;
 		opacity: 1;
+		scale: 1.5;
   }
   100% {
     offset-distance: 100%;
 		opacity: 0;
+		scale: 1;
   }
 `;
 
@@ -56,8 +57,8 @@ const ProduceStar = ({ starObject }) => {
           left: width/2 + Math.floor(Math.random() * width),
           starNumber: prev.starNumber,
           path: left
-            ? `path("M${translateX},70 C${translateX+-width/10},${-distToTravel/5} ${translateX+-.5*width},${-distToTravel/2} ${translateX+-1.5*width},${-distToTravel*1}")`
-            : `path("M${translateX},70 C${translateX+width/10},${-distToTravel/5} ${translateX+.5*width},${-distToTravel/2} ${translateX+1.5*width},${-distToTravel*1}")`,
+            ? `path("M${translateX},70 C${translateX-width/10},${-(distToTravel/5)-70} ${translateX-1.5*width},${-distToTravel/2} ${translateX-4*width},${-distToTravel*1}")`
+            : `path("M${translateX},70 C${translateX+width/10},${-(distToTravel/5)-70} ${translateX+.5*width},${-distToTravel/2} ${translateX+1.5*width},${-distToTravel*1}")`,
         };
       });
     }, randomDelay);
@@ -146,4 +147,5 @@ const SparklyHeader = styled.h3`
   margin-top: 100px;
 	text-shadow: -1px -1px 0 yellow, 1px -1px 0 yellow, -1px 1px 0 yellow, 1px 1px 0 yellow;
 	letter-spacing: 4px;
+	margin-top: 500px;
 `;
