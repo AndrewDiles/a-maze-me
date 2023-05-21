@@ -128,6 +128,18 @@ export const GameProvider = ({ children }) => {
       ...intialiMovementHandlers,
     });
   };
+	const replayCustomLevel = () => {
+		setGame({
+			...game,
+			viewing: "replay-custom",
+  		subView: null,
+      startTime: 0,
+			switch: false,
+      finishTime: null,
+			ended: false,
+      ...intialiMovementHandlers,
+    });
+	}
 	const playNextLevel = () => {
 		const newLevel = game.level === 8 ? 0 : game.level +1;
 		const newWorld = newLevel === 0 ? game.world +1 : game.world
@@ -144,7 +156,6 @@ export const GameProvider = ({ children }) => {
       ...intialiMovementHandlers,
     });
 	}
-  //TODO: below dispatch not yet used
   const playCustom = () => {
     setGame({ ...game, viewing: "custom", subView: null });
   };
@@ -173,6 +184,7 @@ export const GameProvider = ({ children }) => {
         openLevelSelect,
         playLevel,
 				replayLevel,
+				replayCustomLevel,
 				playNextLevel,
         playCustom,
         openEditor,

@@ -60,10 +60,15 @@ export const LevelProvider = ({ children }) => {
 		setLevel({...level, layout: newLayout});
 		setDraw(Date.now());
 	}
+	const loadCustomLevel = () => {
+		const level = localStorage.getItem("custom-map");
+		if (!level) return console.log("Error, no custom map present");
+		setLevel({...level, ...JSON.parse(level)})
+	}
 
   return (
     <LevelContext.Provider
-      value={{ level, setLevel, draw, setDraw, dimensions, unlockKey1, unlockKey2, unlockKey3, flipSwitch }}
+      value={{ level, setLevel, draw, setDraw, dimensions, unlockKey1, unlockKey2, unlockKey3, flipSwitch, loadCustomLevel }}
     >
       {children}
     </LevelContext.Provider>

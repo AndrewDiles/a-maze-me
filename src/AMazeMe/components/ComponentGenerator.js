@@ -4,7 +4,9 @@ import SlotSelection from "./SlotSelection";
 import Worlds from "./Worlds";
 import Menu from "./Menu";
 import Maze from "./Maze";
+import CustomMaze from "./CustomMaze";
 import Replay from "./Replay";
+import ReplayCustom from "./ReplayCustom";
 import ImportCustom from "./ImportCustom";
 import LevelEditor from "./LevelEditor";
 import Records from "./Records";
@@ -25,10 +27,11 @@ export default () => {
 		case "replay": {
 			return <Replay/>;
 		}
-
-		// TODO custom levels
+		case "replay-custom": {
+			return <ReplayCustom/>;
+		}
 		case "custom":{
-			return <h1>BUILD CUSTOM MAZE ACCESS / GEN</h1>
+			return <CustomMaze />
 		}
     case "editor": {
       return game.subView === "import" ? <ImportCustom /> : <LevelEditor />;

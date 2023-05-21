@@ -29,7 +29,6 @@ const drawKey = (ctx, x, y, size, floor) => {
 	ctx.fill();
 	ctx.stroke();
 }
-// TODO draw switches
 const drawSwitchOn= (ctx, x, y, size, activeColor, borderColor, isActive) => {
 	ctx.fillStyle = activeColor;
 	ctx.beginPath();

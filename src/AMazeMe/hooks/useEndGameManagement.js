@@ -40,7 +40,7 @@ export default (thisRecord) => {
 			setSelectedRecords(newRecords);
 			// console.log(newEntry);
 		} else {
-			console.log("this record exists.  Verify if new records");
+			// console.log("this record exists.  Verify if new records");
 			const entry = {
 				"first beaten": thisRecord["first beaten"],
 				"best day": thisRecord["best day"],
