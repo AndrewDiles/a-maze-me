@@ -14,7 +14,7 @@ export default () => {
 
   return (
     <>
-      <XSqueezedHeader margin = "75px auto 0">{name}</XSqueezedHeader>
+      <XSqueezedHeader margin = "10px auto">{name}</XSqueezedHeader>
 			<TimeDisplay/>
       <GameContainer>
         <ManageGameStateMovementAndSprites />
