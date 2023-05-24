@@ -27,10 +27,10 @@ https://a-maze-m3.web.app/
 - Sound effects
 - ✅ Viewing all records and target times for a slot
 - ✅ Reset a save slot
-- a face on the player
+- ✅ a face on the player
 
 **On the fence:**
-- Play an uploaded level (do this at during slot selection)
+- ✅ Play an uploaded level (do this at during slot selection)
 - Enemies
 - Collection of numbers
 - in editor level user select world / level
