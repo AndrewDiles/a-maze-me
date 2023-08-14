@@ -3,6 +3,7 @@ import GameContext from "../../contexts/GameContext";
 import Header from "../reused/Header";
 import CenteredColumn from "../reused/CenteredColumn";
 import Button from "../reused/buttons/Button";
+import RollingBallLoader from "../reused/RollingBallLoader/RollingBallLoader";
 import useKeyBoardToNavigateButtonsAndFocus from "../../hooks/useKeyBoardToNavigateButtonsAndFocus";
 
 const idToFocus = "play-button";
@@ -21,6 +22,7 @@ export default () => {
       </Button>
       <Button id = {buttonsIdArray[1]} onClick={openEditor}>level editor</Button>
       <Button id = {buttonsIdArray[2]} onClick={openRecords}>view records</Button>
+			<RollingBallLoader size="250"/>
     </CenteredColumn>
   );
 };
