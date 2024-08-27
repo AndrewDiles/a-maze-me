@@ -17,7 +17,7 @@ export default ({ recordsHandled, thisRecord, beatTarget }) => (
       <h3>you have unlocked world {recordsHandled.unlock}!</h3>
     )}
 		{recordsHandled.end && 
-		<h3>you have beaten all the levels, congratulations!</h3>
+		<h3>you have beaten all the world's levels, congratulations!</h3>
 		}
   </CenteredColumn>
 );

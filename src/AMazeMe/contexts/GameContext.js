@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { WIN_DELAY } from "../constants/general";
 
 const GameContext = createContext(null);
 export default GameContext;
@@ -18,12 +19,12 @@ const defaultState = {
   world: 0,
   level: 0,
   startTime: 0,
-	switch: false,
+  switch: false,
   finishTime: null,
   ended: false,
   players: [],
   enemies: [],
-	switches: [],
+  switches: [],
   goals: [],
   ...intialiMovementHandlers,
 };
@@ -32,17 +33,22 @@ export const GameProvider = ({ children }) => {
   const [game, setGame] = useState({ ...defaultState });
   // console.log(game);
   // IN GAME SETTERS
-  const initializeGame = ({ newPlayers, newEnemies, newGoals, newSwitches }) => {
+  const initializeGame = ({
+    newPlayers,
+    newEnemies,
+    newGoals,
+    newSwitches,
+  }) => {
     setGame({
       ...game,
       players: newPlayers,
       enemies: newEnemies,
       goals: newGoals,
-			switches: newSwitches,
+      switches: newSwitches,
       startTime: 0,
       finishTime: null,
-			switch: false,
-			ended: false,
+      switch: false,
+      ended: false,
       ...intialiMovementHandlers,
     });
   };
@@ -50,7 +56,12 @@ export const GameProvider = ({ children }) => {
     setGame({ ...game, startTime: Date.now() });
   };
   const updateLocations = ({ newPlayers, newEnemies, newSwitchValue }) => {
-    setGame({ ...game, players: newPlayers, enemies: newEnemies, switch: newSwitchValue });
+    setGame({
+      ...game,
+      players: newPlayers,
+      enemies: newEnemies,
+      switch: newSwitchValue,
+    });
   };
   const initializeGameWin = ({ newPlayers, newEnemies }) => {
     const newGoals = game.goals.map((goal) => {
@@ -70,6 +81,24 @@ export const GameProvider = ({ children }) => {
       ended: true,
       subView: "complete",
       ...intialiMovementHandlers,
+    });
+  };
+  const winGameIfOverdue = () => {
+    setGame((currentGame) => {
+      if (
+        !currentGame.ended &&
+        currentGame.finishTime &&
+        currentGame.finishTime + 2 * WIN_DELAY < Date.now()
+      ) {
+        return {
+          ...currentGame,
+          ended: true,
+          subView: "complete",
+          ...intialiMovementHandlers,
+        };
+      } else {
+        return currentGame;
+      }
     });
   };
 
@@ -116,46 +145,46 @@ export const GameProvider = ({ children }) => {
       level: levelToPlay,
     });
   };
-	const replayLevel = () => {
+  const replayLevel = () => {
     setGame({
-			...game,
-			viewing: "replay",
-  		subView: null,
+      ...game,
+      viewing: "replay",
+      subView: null,
       startTime: 0,
-			switch: false,
+      switch: false,
       finishTime: null,
-			ended: false,
+      ended: false,
       ...intialiMovementHandlers,
     });
   };
-	const replayCustomLevel = () => {
-		setGame({
-			...game,
-			viewing: "replay-custom",
-  		subView: null,
+  const replayCustomLevel = () => {
+    setGame({
+      ...game,
+      viewing: "replay-custom",
+      subView: null,
       startTime: 0,
-			switch: false,
+      switch: false,
       finishTime: null,
-			ended: false,
+      ended: false,
       ...intialiMovementHandlers,
     });
-	}
-	const playNextLevel = () => {
-		const newLevel = game.level === 8 ? 0 : game.level +1;
-		const newWorld = newLevel === 0 ? game.world +1 : game.world
-		setGame({
-			...game,
-			world: newWorld,
-			level: newLevel,
-			viewing: "replay",
-  		subView: null,
-			switch: false,
+  };
+  const playNextLevel = () => {
+    const newLevel = game.level === 8 ? 0 : game.level + 1;
+    const newWorld = newLevel === 0 ? game.world + 1 : game.world;
+    setGame({
+      ...game,
+      world: newWorld,
+      level: newLevel,
+      viewing: "replay",
+      subView: null,
+      switch: false,
       startTime: 0,
       finishTime: null,
-			ended: false,
+      ended: false,
       ...intialiMovementHandlers,
     });
-	}
+  };
   const playCustom = () => {
     setGame({ ...game, viewing: "custom", subView: null });
   };
@@ -180,12 +209,13 @@ export const GameProvider = ({ children }) => {
         updateLocations,
         initializeGameWin,
         winGame,
+				winGameIfOverdue,
         openSlotSelect,
         openLevelSelect,
         playLevel,
-				replayLevel,
-				replayCustomLevel,
-				playNextLevel,
+        replayLevel,
+        replayCustomLevel,
+        playNextLevel,
         playCustom,
         openEditor,
         openRecords,

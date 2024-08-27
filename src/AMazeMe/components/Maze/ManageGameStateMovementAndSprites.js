@@ -12,7 +12,7 @@ export default () => {
   const board = useRef(null);
   const { level, dimensions } = useContext(LevelContext);
   const { playerColor, goalColor } = level;
-  const { game, startTimer, winGame } = useContext(GameContext);
+  const { game, startTimer, winGame, winGameIfOverdue } = useContext(GameContext);
   const { size } = dimensions;
   const [finishHandled, setFinishHandled] = useState(false);
 
@@ -26,6 +26,13 @@ export default () => {
   //     console.log("game has begun");
   //   }
   // }, [game.startTime]);
+
+	useEffect(()=>{
+		const timer = setInterval(winGameIfOverdue, WIN_DELAY);
+		return () => {
+			clearInterval(timer)
+		}
+	}, [])
 
   useEffect(() => {
     if (game.finishTime && !finishHandled) {

@@ -108,7 +108,7 @@ export default ({ children }) => {
   useEffect(() => {
     if (!header.current) return;
     const rect = header.current.getBoundingClientRect();
-    console.log(rect);
+    // console.log(rect);
     const width = rect.width;
     const distToTravel = rect.top + rect.height;
     const maxStars = Math.floor(

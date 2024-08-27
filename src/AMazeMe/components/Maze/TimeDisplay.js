@@ -14,7 +14,7 @@ export default () => {
 
   return (
     <Time metTarget={metTarget}>
-      <span>{time}</span>s
+      <span>{time.toFixed(2)}</span>s
     </Time>
   );
 };

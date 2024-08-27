@@ -4,7 +4,7 @@ The purpose of this little project is to make a small game for my young ones to 
 
 I find most games are far too difficult (especially for my 2 year old).  Yes there are cell/tablet games, but none of these "train" children to use a controller.
 
-My intent is to make a simple maze game that uses the arrow keys and wasd for movement.
+My intent is to make a simple maze game that uses the arrow keys and WASD for movement.
 
 Currently deployed at:
 https://a-maze-m3.web.app/
@@ -15,7 +15,7 @@ https://a-maze-m3.web.app/
 - ✅ Level Select
 - ~~Tracking minimum number of moves to win~~ (invalid as movement is not cell based)
 - ✅ Tracking target times to win
-- ✅ Trcking which levels have been unlocked
+- ✅ Tracking which levels have been unlocked
 - ✅ Ability to upload a json file for custom levels
 - ✅ local storage for save files and custom levels
 - ✅ Make WASD controls for all menus (I excluded level editor / view records)
@@ -44,7 +44,7 @@ https://a-maze-m3.web.app/
 
 ## If you are trying this repo out for yourself:
 
-run `npm install` to install the dependancies required to boot a React environment
+run `npm install` to install the dependencies required to boot a React environment
 
 then, run `npm start` to play the game
 
@@ -58,4 +58,4 @@ then, run `npm start` to play the game
 
 - Around 30hours in now.  All MVP game mechanics are operational.  Just going to have some fun building levels.
 
-- Shy of 40hours in, all MVPs have been met.  The WASD constrols in level select took about 90 minutes to code, the single longest of any component / hook.
+- Shy of 40hours in, all MVPs have been met.  The WASD controls in level select took about 90 minutes to code, the single longest of any component / hook.
