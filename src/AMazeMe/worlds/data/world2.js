@@ -11,6 +11,9 @@ export const worldColors = {
   "switch offColor": "#FF00FF", //fuchsia,
   enemyColor: "#ffa500", //"orange"
   floorColor: "aliceblue",
+	portalSet1Color: "#ffc800", // orange
+	portalSet2Color: "#00ffe1", // cyan
+	portalSet3Color: "#fba2f4", // pink
 };
 
 const levelsWithoutColors = [

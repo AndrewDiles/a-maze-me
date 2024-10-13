@@ -5,6 +5,8 @@ import {bounceRightIfApplicable, bounceLeftIfApplicable, bounceUpIfApplicable, b
 import logError from "./logError";
 
 const addToCollisionsOrReturnTrue = ({ letter, collisions }) => {
+	console.log(letter);
+	
   //TODO: add enemy letters in here
   if (letter === "Z") {
     if (!collisions.includes("goal")) collisions.push("goal");
@@ -18,7 +20,20 @@ const addToCollisionsOrReturnTrue = ({ letter, collisions }) => {
     collisions.push("turn switch on");
   } else if (letter === "R") {
     collisions.push("turn switch off");
-  } else return true;
+  } else if (letter === "Á") {
+		collisions.push("teleport to 2");
+	} else if (letter === "À") {
+		collisions.push("teleport to 1");
+	} else if (letter === "Ó") {
+		collisions.push("teleport to 4");
+	} else if (letter === "Ò") {
+		collisions.push("teleport to 3");
+	} else if (letter === "Ú") {
+		collisions.push("teleport to 6");
+	} else if (letter === "Ù") {
+		collisions.push("teleport to 5");
+	}
+	else return true;
 	// "damage" for enemy / projectiles
 };
 

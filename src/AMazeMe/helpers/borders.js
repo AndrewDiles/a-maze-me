@@ -149,6 +149,17 @@ const drawBorder = (direction, { c, x, y, size, color, floor, building, borderCo
 			ctx.font = `${size/6}px Arial`;
 			return ctx.fillText("TURN OFF",x+size/11, y+size/6);
 		}
+
+
+		case "portal1-2":
+		case "portal3-4":
+		case "portal5-6":
+      return ctx.fillRect(x + 0.8 * size, y, 0.2 * size, size);
+    case "portal2-1":
+		case "portal4-3":
+		case "portal6-5":
+      return ctx.fillRect(x, y, 0.2 * size, size);
+
 		case "empty" : {
 			return ctx.fillRect(x, y, size, size);
 		}
@@ -348,6 +359,25 @@ export default {
   },
   Y: (p) => {
     drawBorder("left", p);
+  },
+	// wall teleporters
+	Á: (p) => {
+  	drawBorder("portal1-2", p);
+  },
+	À: (p) => {
+  	drawBorder("portal2-1", p);
+  },
+	Ó: (p) => {
+  	drawBorder("portal3-4", p);
+  },
+	Ò: (p) => {
+  	drawBorder("portal4-3", p);
+  },
+	Ú: (p) => {
+  	drawBorder("portal5-6", p);
+  },
+	Ù: (p) => {
+  	drawBorder("portal6-5", p);
   },
   // start location
   S: (p) => {

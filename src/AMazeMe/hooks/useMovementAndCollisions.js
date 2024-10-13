@@ -2,15 +2,16 @@ import { useContext } from "react";
 import LevelContext from "../contexts/LevelContext";
 import GameContext from "../contexts/GameContext";
 import useInterval from "./useInterval";
-import { GAME_FREQ, MOVE_MAGNITUDE } from "../constants/general";
+import { GAME_FREQ, MOVE_MAGNITUDE, TELEPORTATION_TARGET_TABLE } from "../constants/general";
 import calcPositionInfo from "../helpers/calcPositionInfo";
+import teleportPlayerToDestination from "../helpers/teleportPlayerToDestination";
 import keepInBounds from "../helpers/keepInBounds";
 import calcColisions from "../helpers/calcColisions";
 
 const useMovementAndCollisions = ({ hasStarted, hasEnded }) => {
   const { game, updateLocations, initializeGameWin } = useContext(GameContext);
   const { x, y, players, enemies } = game;
-  const { level, unlockKey1, unlockKey2, unlockKey3, flipSwitch } =
+  const { level, unlockKey1, unlockKey2, unlockKey3, flipSwitch, dimensions: {size} } =
     useContext(LevelContext);
   const { rows, cols, layout } = level;
   const updateLocation = () => {
@@ -74,6 +75,11 @@ const useMovementAndCollisions = ({ hasStarted, hasEnded }) => {
 					flipSwitch(false);
 					newSwitchValue = false;
 				}
+			} else if (collisions.some(c => c.includes("teleport to"))) {
+				const collision = collisions[collisions.findIndex(c => c.includes("teleport to"))];
+				const destinationNumber = Number(collision[collision.length-1]);
+				const destinationLetter = TELEPORTATION_TARGET_TABLE[destinationNumber];
+				teleportPlayerToDestination(newPlayerObject, destinationLetter, layout, size);
 			}
       return newPlayerObject;
     });

@@ -11,6 +11,9 @@ export const worldColors = {
   "switch offColor": "#FF00FF",
   enemyColor: "#ffa500",
   floorColor: "lightblue",
+	portalSet1Color: "#ffc800", // orange
+	portalSet2Color: "#00ffe1", // cyan
+	portalSet3Color: "#fba2f4", // pink
 };
 
 const levelsWithoutColors = [
@@ -179,3 +182,5 @@ const levelsWithoutColors = [
 export default levelsWithoutColors.map((level) => {
   return { ...level, ...worldColors };
 });
+
+

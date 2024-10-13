@@ -12,25 +12,28 @@ export const worldColors = {
   "switch offColor": "#FF00FF", //fuchsia,
   enemyColor: "#ffa500", //"orange"
   floorColor: "#F8F8FF", //"ghostwhite",
+	portalSet1Color: "#ffc800", // orange
+	portalSet2Color: "#00ffe1", // cyan
+	portalSet3Color: "#fba2f4", // pink
 };
 
 const levelsWithoutColors = [
   {
-    name: "Your First Maze",
+    name: "your first maze",
     rows: 5,
     cols: 7,
     layout: ["HAAAAAE", "D00000B", "DS000ZB", "D00000B", "GCCCCCF"],
     target: 1.5,
   },
   {
-    name: "Four Rooms",
+    name: "fourrooms",
     rows: 6,
     cols: 6,
     layout: ["HAEHAE", "DS000B", "GCFG0F", "HAEH0E", "DZ000B", "GCFGCF"],
     target: 2.9,
   },
   {
-    name: "My First Maze",
+    name: "my first maze",
     rows: 8,
     cols: 8,
     layout: [
@@ -46,7 +49,7 @@ const levelsWithoutColors = [
     target: 3.1,
   },
   {
-    name: "Turned Around",
+    name: "turned around",
     rows: 8,
     cols: 9,
     layout: [
@@ -62,7 +65,7 @@ const levelsWithoutColors = [
     target: 5,
   },
   {
-    name: "Tucked Away",
+    name: "tucked away",
     rows: 8,
     cols: 9,
     layout: [
@@ -78,7 +81,7 @@ const levelsWithoutColors = [
     target: 6.8,
   },
   {
-    name: "Getting Tricky With It",
+    name: "getting tricky with it",
     rows: 10,
     cols: 5,
     layout: [
@@ -96,7 +99,7 @@ const levelsWithoutColors = [
     target: 6.2,
   },
   {
-    name: "Plinko",
+    name: "plinko",
     rows: 14,
     cols: 7,
     layout: [
@@ -118,7 +121,7 @@ const levelsWithoutColors = [
     target: 4.9,
   },
   {
-    name: "Whirlpool",
+    name: "whirlpool",
     rows: 10,
     cols: 10,
     layout: [
@@ -136,7 +139,7 @@ const levelsWithoutColors = [
     target: 20,
   },
   {
-    name: "A Fork",
+    name: "a fork",
     rows: 6,
     cols: 10,
     layout: [

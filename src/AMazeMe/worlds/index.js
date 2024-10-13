@@ -3,10 +3,11 @@ import { MAX_WORLD_INDEX } from "../constants/general";
 import world1 from "./data/world1";
 import world2 from "./data/world2";
 import world3 from "./data/world3";
+import world4 from "./data/world4";
 
 import world_template from "./data/world_template";
 
-const worlds = [world1, world2, world3, world_template];
+const worlds = [world1, world2, world3, world4, world_template];
 
 // consider reducing this to +1 if world_template is removed
 if (MAX_WORLD_INDEX +1 !== worlds.length) {

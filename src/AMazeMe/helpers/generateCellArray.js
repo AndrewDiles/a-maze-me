@@ -20,6 +20,9 @@ const generateCellArray = (letter) => {
     case "r":
     case "w":
     case "W":
+		case "Á":
+		case "Ó":
+		case "Ú":
       return [
         [0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
         [0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
@@ -52,6 +55,9 @@ const generateCellArray = (letter) => {
     case "t":
     case "y":
     case "Y":
+		case "À":
+		case "Ò":
+		case "Ù":
       return [
         [1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
         [1, 1, 0, 0, 0, 0, 0, 0, 0, 0],

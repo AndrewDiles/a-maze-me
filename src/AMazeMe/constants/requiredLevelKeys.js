@@ -10,5 +10,8 @@ export default [
 	"barrier2Color",
 	"barrier3Color",
 	"floorColor",
-	"enemyColor"
+	"enemyColor",
+	"portalSet1Color",
+	"portalSet2Color",
+	"portalSet3Color",
 ]

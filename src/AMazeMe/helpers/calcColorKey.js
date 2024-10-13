@@ -12,6 +12,10 @@ export default (letter) => {
 	//U-Y
 	if (charCode >= 85 && charCode <= 89) return "barrier3Color";
 
+	if (letter === "Á" || letter === "À") return "portalSet1Color"
+	if (letter === "Ó" || letter === "Ò") return "portalSet2Color"
+	if (letter === "Ú" || letter === "Ù") return "portalSet3Color"
+
   if (letter === "S") return "playerColor";
 
   if (letter === "Z") return "goalColor";
