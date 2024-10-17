@@ -31,7 +31,7 @@ export default ({ worldNumber, selection, setSelection }) => {
   const worldUnlocked = selectedRecords.length > worldNumber;
 	const allWorldTargetsMet = worldUnlocked && produceLevelArray().every(levelNumber => {
 		const progressArray = selectedRecords[selection.worldIndex];
-		return progressArray && progressArray[levelNumber - 1] && progressArray[levelNumber - 1]["best time"] < worlds[worldNumber][levelNumber-1].target 
+		return progressArray && progressArray[levelNumber - 1] && progressArray[levelNumber - 1]["best time"] < ( worlds[worldNumber][levelNumber-1]?.target || 0 )
 	})
   return (
     <Tile
@@ -55,7 +55,7 @@ export default ({ worldNumber, selection, setSelection }) => {
               ? true
               : false
             : false;
-					const targetMet = progressArray && progressArray[levelNumber - 1] && progressArray[levelNumber - 1]["best time"] < worlds[worldNumber][levelNumber-1].target 
+					const targetMet = progressArray && progressArray[levelNumber - 1] && progressArray[levelNumber - 1]["best time"] < ( worlds[worldNumber][levelNumber-1]?.target || 0 )
           return (
             <Level
               key={levelNumber}

@@ -1,13 +1,8 @@
-import { useState, useContext, useEffect, useRef } from "react";
-import LevelContext from "../../contexts/LevelContext";
-import GameContext from "../../contexts/GameContext";
-import useMovementControls from "../../hooks/useMovementControls";
-import useMovementAndCollisions from "../../hooks/useMovementAndCollisions";
-import styled, { keyframes } from "styled-components";
-import { GAME_FREQ, WIN_DELAY } from "../../constants/general";
+import { useState} from "react";
+import styled from "styled-components";
 import Square from "./Square";
 
-export default ({ color, top, left, size, animation, WIN_DELAY }) => {
+export default ({ color, top, left, size, animation, WIN_DELAY, playerNumber }) => {
   const [faceActive, setFaceActive] = useState(false);
   return (
     <Player
@@ -17,6 +12,7 @@ export default ({ color, top, left, size, animation, WIN_DELAY }) => {
       size={size}
       animation={animation}
       WIN_DELAY={WIN_DELAY}
+			id={`player${playerNumber}`}
       onClick={() => {
         setFaceActive(!faceActive);
       }}

@@ -11,7 +11,7 @@ import calcColisions from "../helpers/calcColisions";
 const useMovementAndCollisions = ({ hasStarted, hasEnded }) => {
   const { game, updateLocations, initializeGameWin } = useContext(GameContext);
   const { x, y, players, enemies } = game;
-  const { level, unlockKey1, unlockKey2, unlockKey3, flipSwitch, dimensions: {size} } =
+  const { level, unlockKey1, unlockKey2, unlockKey3, flipSwitch } =
     useContext(LevelContext);
   const { rows, cols, layout } = level;
   const updateLocation = () => {
@@ -19,7 +19,7 @@ const useMovementAndCollisions = ({ hasStarted, hasEnded }) => {
     // TODO: manage enemy movement / ai if it gets included
     const newEnemies = [];
 
-    const newPlayers = players.map((playerObject) => {
+    const newPlayers = players.map((playerObject, playerNumber) => {
       const newPlayerObject = { ...playerObject };
       if (typeof x === "number") {
         newPlayerObject.x += MOVE_MAGNITUDE * x;
@@ -79,7 +79,7 @@ const useMovementAndCollisions = ({ hasStarted, hasEnded }) => {
 				const collision = collisions[collisions.findIndex(c => c.includes("teleport to"))];
 				const destinationNumber = Number(collision[collision.length-1]);
 				const destinationLetter = TELEPORTATION_TARGET_TABLE[destinationNumber];
-				teleportPlayerToDestination(newPlayerObject, destinationLetter, layout, size);
+				teleportPlayerToDestination(newPlayerObject, destinationLetter, layout, playerNumber);
 			}
       return newPlayerObject;
     });

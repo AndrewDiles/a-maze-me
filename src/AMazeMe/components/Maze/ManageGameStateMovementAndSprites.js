@@ -64,6 +64,7 @@ export default () => {
             size={size}
             animation={playerInfo.animation}
             WIN_DELAY={WIN_DELAY}
+						playerNumber={index}
           />
         ) : null;
       })}

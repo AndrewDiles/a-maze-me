@@ -9,7 +9,7 @@ const popping = keyframes`
 const win = keyframes`
  0% { 
 	outline: 0em solid var(--color-a);
-	filter: hue-rotate(0deg)
+	filter: hue-rotate(0deg);
 	border-radius: 0 0 0 0;
 }
  25% { outline: .25em solid var(--color-a);

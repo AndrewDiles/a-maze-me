@@ -5,8 +5,6 @@ import {bounceRightIfApplicable, bounceLeftIfApplicable, bounceUpIfApplicable, b
 import logError from "./logError";
 
 const addToCollisionsOrReturnTrue = ({ letter, collisions }) => {
-	console.log(letter);
-	
   //TODO: add enemy letters in here
   if (letter === "Z") {
     if (!collisions.includes("goal")) collisions.push("goal");
@@ -301,20 +299,9 @@ export default ({
 		}
 		tests = tests.filter(t => t!==test)
 	}
-
-
-  
 	// testTLCollisions({pos:TLPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y})
-  
-  
 	// testTRCollisions({pos : TRPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y, maxCols})
-
-  
-// testBLCollisions({pos:BLPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y, maxRows})
-  
-  
+	// testBLCollisions({pos:BLPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y, maxRows})
 	// testBRCollisions({pos:BRPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y, maxCols, maxRows})
-
-
   return collisions;
 };
