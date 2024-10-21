@@ -26,7 +26,7 @@ const levelsWithoutColors = [
     target: 1.5,
   },
   {
-    name: "fourrooms",
+    name: "four rooms",
     rows: 6,
     cols: 6,
     layout: ["HAEHAE", "DS000B", "GCFG0F", "HAEH0E", "DZ000B", "GCFGCF"],
