@@ -38,8 +38,8 @@ const useKeyBoardToNavigateButtonsAndFocus = ({ buttonsIdArray, idToFocus }) => 
   };
 
   useEffect(() => {
-    const handleKeyPress = ({ key }) => {
-			key = key.toLowerCase();
+    const handleKeyPress = event => {
+			const key = event.key.toLowerCase();
       switch (key) {
         case "w":
         case "a":
@@ -47,7 +47,7 @@ const useKeyBoardToNavigateButtonsAndFocus = ({ buttonsIdArray, idToFocus }) => 
         case "arrowleft": {
           if (document.activeElement) {
             // case something is focused
-
+						event.preventDefault();
             const indexCurrentlyFocused = buttonsIdArray.findIndex(
               (e) => e === document.activeElement.id
             );
@@ -69,7 +69,7 @@ const useKeyBoardToNavigateButtonsAndFocus = ({ buttonsIdArray, idToFocus }) => 
         case "arrowright": {
           if (document.activeElement) {
             // case something is focused
-
+						event.preventDefault();
             const indexCurrentlyFocused = buttonsIdArray.findIndex(
               (e) => e === document.activeElement.id
             );

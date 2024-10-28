@@ -14,18 +14,20 @@ const useWASDSelectedCell = () => {
   } = useContext(GameContext);
 
   useEffect(() => {
-    const handleKeyDown = ({ key }) => {
-			key = key.toLowerCase();
+    const handleKeyDown = ev => {
+			const key = ev.key.toLowerCase();
       // console.log(key);
       switch (key) {
         case "w":
         case "arrowup":
+					ev.preventDefault();
           return upPress();
         case "a":
         case "arrowleft":
           return leftPress();
         case "s":
         case "arrowdown":
+					ev.preventDefault();
           return downPress();
         case "d":
         case "arrowright":
