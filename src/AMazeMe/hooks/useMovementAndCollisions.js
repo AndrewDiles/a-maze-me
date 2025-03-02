@@ -75,7 +75,8 @@ const useMovementAndCollisions = ({ hasStarted, hasEnded }) => {
 					flipSwitch(false);
 					newSwitchValue = false;
 				}
-			} else if (collisions.some(c => c.includes("teleport to"))) {
+			}
+			if (collisions.some(c => c.includes("teleport to"))) {
 				const collision = collisions[collisions.findIndex(c => c.includes("teleport to"))];
 				const destinationNumber = Number(collision[collision.length-1]);
 				const destinationLetter = TELEPORTATION_TARGET_TABLE[destinationNumber];

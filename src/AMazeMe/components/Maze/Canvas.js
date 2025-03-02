@@ -1,14 +1,18 @@
 import { useContext, useRef, useEffect } from "react";
 import LevelContext from "../../contexts/LevelContext";
 import GameContext from "../../contexts/GameContext";
+import TouchOverlay from "./TouchOverlay";
 
 import borders from "../../helpers/borders";
 import calcColorKey from "../../helpers/calcColorKey";
+import useTouchDevice from "../../hooks/useIsTouchDevice";
+
 import styled from "styled-components";
 
 export default () => {
   const { level, dimensions, draw, setDraw } = useContext(LevelContext);
-	const { game } = useContext(GameContext)
+	const { game } = useContext(GameContext);
+	const isTouchDevice = useTouchDevice();
   const canvas = useRef(null);
 
   useEffect(() => {
@@ -37,6 +41,7 @@ export default () => {
 
   return (
     <Container>
+			{!game.finishTime && (isTouchDevice === true || isTouchDevice > 0) && <TouchOverlay/>}
       <Canvas
         id="board"
         ref={canvas}

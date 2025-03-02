@@ -7,7 +7,7 @@ import Button from "../../reused/buttons/Button";
 import useKeyBoardToNavigateButtonsAndFocus from "../../../hooks/useKeyBoardToNavigateButtonsAndFocus";
 import { MAX_WORLD_INDEX } from "../../../constants/general";
 
-const idToFocus = "replay-button";
+const idToFocus = "play-next-level-button";
 const buttonsIdArray = ["back-to-level-select-button", idToFocus, "play-next-level-button"];
 
 export default () => {

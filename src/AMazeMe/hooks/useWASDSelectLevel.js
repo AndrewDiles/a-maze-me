@@ -33,14 +33,14 @@ const useWASDSelectLevel = (selectedRecords) => {
       setLastKnownFocus(id);
       elem.focus();
     } else {
-			document.activeElement && document.activeElement.blur();
-		}
+      document.activeElement && document.activeElement.blur();
+    }
   };
 
   // shape of a level button: `level ${levelNumber} world ${worldNumber} button`
   useEffect(() => {
     const handleKeyPress = ({ key }) => {
-			key = key.toLowerCase();
+      key = key.toLowerCase();
       if (
         document.activeElement &&
         document.activeElement.id &&
@@ -50,7 +50,8 @@ const useWASDSelectLevel = (selectedRecords) => {
         const currentlyFocusedId = document.activeElement.id;
         const aLevelIsFocused = !ids.includes(currentlyFocusedId);
         switch (key) {
-          case "a": {
+          case "a":
+          case "arrowleft": {
             if (aLevelIsFocused) {
               if (
                 selection.levelIndex === 0 ||
@@ -82,7 +83,8 @@ const useWASDSelectLevel = (selectedRecords) => {
               }
             }
           }
-          case "w": {
+          case "w":
+          case "arrowup": {
             if (currentlyFocusedId === ids[0]) {
               return setLastAndFocus(ids[3]);
             } else if (currentlyFocusedId === ids[2]) {
@@ -110,7 +112,8 @@ const useWASDSelectLevel = (selectedRecords) => {
               }
             }
           }
-          case "d": {
+          case "d":
+          case "arrowright": {
             if (aLevelIsFocused) {
               if (
                 selection.levelIndex === 2 ||
@@ -143,7 +146,8 @@ const useWASDSelectLevel = (selectedRecords) => {
             }
           }
 
-          case "s": {
+          case "s":
+          case "arrowdown": {
             if (currentlyFocusedId === ids[0]) {
               if (document.getElementById(convertSelectionToId(selection))) {
                 return setLastAndFocus(convertSelectionToId(selection));
@@ -211,12 +215,11 @@ const useWASDSelectLevel = (selectedRecords) => {
               if (elem) elem.focus();
             }, 10);
           } else {
-						if (key === "d" || key === "s") {
-							return setLastAndFocus(ids[2]);
-						} else {
-							return setLastAndFocus(idToFocus);
-						}
-            
+            if (key === "d" || key === "s") {
+              return setLastAndFocus(ids[2]);
+            } else {
+              return setLastAndFocus(idToFocus);
+            }
           }
         }
       }
