@@ -60,4 +60,6 @@ then, run `npm start` to play the game
 
 - Shy of 40hours in, all MVPs have been met.  The WASD controls in level select took about 90 minutes to code, the single longest of any component / hook.
 
-- Added another ~5 hours of coding to include teleports. Known possible clipping issue on gear change level.
+- Added another ~5 hours of coding to include portals and touchscreen overlay.
+
+- Known possible clipping issue on gear change level.
