@@ -16,9 +16,7 @@ const TouchOverlay = memo(() => {
   } = useContext(GameContext);
 
   useEffect(() => {
-    return () => {
-
-		};
+    return () => {};
   });
 
   const overlayInfo = [
@@ -54,6 +52,7 @@ const TouchOverlay = memo(() => {
         ({ direction, text, ontouchstart, ontouchend }, index) => (
           <DirectionButton
             key={direction}
+						className="noselect"
             $area={direction}
             onTouchStart={ontouchstart}
             onTouchEnd={ontouchend}
