@@ -63,3 +63,5 @@ then, run `npm start` to play the game
 - Added another ~5 hours of coding to include portals and touchscreen overlay.
 
 - Known possible clipping issue on gear change level.
+
+- Correcting preemptive teleportation that was occurring by only teleportation if bounce did not happen. May have fixed above bug, but haven't done thorough testing.

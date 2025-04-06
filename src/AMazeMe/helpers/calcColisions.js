@@ -61,7 +61,6 @@ const testTLCollisions = ({pos, collisions, bounced, newPlayerObject, getCellFro
 
       let collisionFound = false;
 
-			// console.log(cellArray);
       // console.log("row range: ", inRowIndexGreaterThan, " to ", Math.min(inRowIndexGreaterThan + 5, 10));
       // console.log("col range: ", inColumnIndexGreaterThan,  " to ", Math.min(inColumnIndexGreaterThan+5, 10));
 
@@ -86,15 +85,12 @@ const testTLCollisions = ({pos, collisions, bounced, newPlayerObject, getCellFro
         if (
           addToCollisionsOrReturnTrue({ letter: cellFromLayout, collisions })
         ) {
-					bounceRightIfApplicable({ bounced, newPlayerObject, x })
-          bounceDownIfApplicable({ bounced, newPlayerObject, y })
+					bounceRightIfApplicable({ bounced, newPlayerObject, x, contactLetter: cellFromLayout })
+          bounceDownIfApplicable({ bounced, newPlayerObject, y, contactLetter: cellFromLayout })
         }
       }
     }
   }
-
-
-
 }
 
 // TR collisions - can only bounce down or left
@@ -141,8 +137,8 @@ const testTRCollisions = ({pos, collisions, bounced, newPlayerObject, getCellFro
         if (
           addToCollisionsOrReturnTrue({ letter: cellFromLayout, collisions })
         ) {
-					bounceLeftIfApplicable({ bounced, newPlayerObject, x })
-          bounceDownIfApplicable({ bounced, newPlayerObject, y })
+					bounceLeftIfApplicable({ bounced, newPlayerObject, x, contactLetter: cellFromLayout })
+          bounceDownIfApplicable({ bounced, newPlayerObject, y, contactLetter: cellFromLayout })
         }
       }
     }
@@ -191,8 +187,8 @@ const testBLCollisions = ({pos, collisions, bounced, newPlayerObject, getCellFro
         if (
           addToCollisionsOrReturnTrue({ letter: cellFromLayout, collisions })
         ) {
-          bounceRightIfApplicable({ bounced, newPlayerObject, x })
-          bounceUpIfApplicable({ bounced, newPlayerObject, y })
+          bounceRightIfApplicable({ bounced, newPlayerObject, x, contactLetter: cellFromLayout })
+          bounceUpIfApplicable({ bounced, newPlayerObject, y, contactLetter: cellFromLayout })
         }
       }
     }
@@ -241,18 +237,29 @@ const testBRCollisions = ({pos, collisions, bounced, newPlayerObject, getCellFro
         if (
           addToCollisionsOrReturnTrue({ letter: cellFromLayout, collisions })
         ) {
-          bounceLeftIfApplicable({ bounced, newPlayerObject, x })
-          bounceUpIfApplicable({ bounced, newPlayerObject, y })
+          bounceLeftIfApplicable({ bounced, newPlayerObject, x, contactLetter: cellFromLayout })
+          bounceUpIfApplicable({ bounced, newPlayerObject, y, contactLetter: cellFromLayout })
         }
       }
     }
   }
 }
 
+const removeTeleportCollisions = (collisions) => {
+	collisions.sort();
+	for (let index = collisions.length-1 ; index > -1; index--) {
+		const possibleTeleport = collisions[index];
+		
+		if (typeof possibleTeleport === "string" && possibleTeleport.includes("teleport")) {
+			delete collisions[index]
+			collisions.sort().pop();
+		}
+	}
+}
 
 // this is not a pure function
 // it will modify the newPlayerObject and bounced objects
-// these changes should be immdiately reflected in the component that called this function
+// these changes should be immediately reflected in the component that called this function
 export default ({
   bounced,
   newPlayerObject,
@@ -303,5 +310,8 @@ export default ({
 	// testTRCollisions({pos : TRPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y, maxCols})
 	// testBLCollisions({pos:BLPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y, maxRows})
 	// testBRCollisions({pos:BRPos, collisions, bounced, newPlayerObject, getCellFromLayout, x, y, maxCols, maxRows})
-  return collisions;
+	if ((bounced.x || bounced.y) && collisions.length > 0) {
+		removeTeleportCollisions(collisions)
+	}
+	return collisions;
 };
