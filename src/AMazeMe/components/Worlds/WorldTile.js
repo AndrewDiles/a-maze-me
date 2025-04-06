@@ -47,7 +47,7 @@ export default ({ worldNumber, selection, setSelection }) => {
 			<WorldNumber allWorldTargetsMet = {allWorldTargetsMet} >world {worldNumber + 1}</WorldNumber>
       {worldUnlocked ? (
         produceLevelArray().map((levelNumber) => {
-          const progressArray = selectedRecords[selection.worldIndex];
+          const progressArray = selectedRecords[worldNumber];
           const unlocked = progressArray
             ? levelNumber === 1
               ? true

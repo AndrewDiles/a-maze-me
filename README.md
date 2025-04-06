@@ -65,3 +65,5 @@ then, run `npm start` to play the game
 - Known possible clipping issue on gear change level.
 
 - Correcting preemptive teleportation that was occurring by only teleportation if bounce did not happen. May have fixed above bug, but haven't done thorough testing.
+
+- Corrected incorrect color highlighting of level numbers if target time met.

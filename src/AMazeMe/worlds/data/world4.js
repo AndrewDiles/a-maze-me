@@ -22,7 +22,7 @@ const levelsWithoutColors = [
     rows: 5,
     cols: 7,
     layout: ["HAAOAAE", "D0bOc0B", "DSÁOÀZB", "D0aOd0B", "GCCOCCF"],
-    target: 5,
+    target: 1,
   },
   {
     name: "two slices",
@@ -77,7 +77,7 @@ const levelsWithoutColors = [
       "OAA000ÓO0SO",
       "OOOOOOOOOOO",
     ],
-    target: 30,
+    target: 18,
   },
   {
     name: "a dirty trick",
@@ -93,7 +93,7 @@ const levelsWithoutColors = [
       "OS00000WOÒZO",
       "OOOOOOOOOOOO",
     ],
-    target: 12,
+    target: 7,
   },
   {
     name: "one flip too many",

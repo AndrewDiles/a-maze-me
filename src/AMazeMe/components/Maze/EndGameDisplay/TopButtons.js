@@ -8,7 +8,7 @@ import useKeyBoardToNavigateButtonsAndFocus from "../../../hooks/useKeyBoardToNa
 import { MAX_WORLD_INDEX } from "../../../constants/general";
 
 const idToFocus = "play-next-level-button";
-const buttonsIdArray = ["back-to-level-select-button", idToFocus, "play-next-level-button"];
+const buttonsIdArray = ["back-to-level-select-button", "replay-button", idToFocus];
 
 export default () => {
   const { game, playNextLevel } = useContext(GameContext);

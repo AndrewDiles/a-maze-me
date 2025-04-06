@@ -23,9 +23,7 @@ while (worldArray.length <= MAX_WORLD_INDEX) {
 export default () => {
   const { selectedRecords } = useContext(RecordsContext);
 	const [selection, setSelection] = useWASDSelectLevel(selectedRecords);
-	
-
-	const {records, unlocked} = findRecordsAndUnlocked({selectedRecords, selection})
+	const {records, unlocked} = findRecordsAndUnlocked({selectedRecords, selection});
 	const name = worlds[selection.worldIndex][selection.levelIndex].name;
 	const target = worlds[selection.worldIndex][selection.levelIndex].target;
   return (
