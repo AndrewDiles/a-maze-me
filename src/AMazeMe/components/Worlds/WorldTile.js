@@ -30,7 +30,7 @@ export default ({ worldNumber, selection, setSelection }) => {
   // if < 0, should be on right
   const worldUnlocked = selectedRecords.length > worldNumber;
 	const allWorldTargetsMet = worldUnlocked && produceLevelArray().every(levelNumber => {
-		const progressArray = selectedRecords[selection.worldIndex];
+		const progressArray = selectedRecords[worldNumber];
 		return progressArray && progressArray[levelNumber - 1] && progressArray[levelNumber - 1]["best time"] < ( worlds[worldNumber][levelNumber-1]?.target || 0 )
 	})
   return (

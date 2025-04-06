@@ -182,7 +182,7 @@ const useWASDSelectLevel = (selectedRecords) => {
         if (elem && elem.tagName === "BUTTON") {
           elem.focus();
         } else {
-          if (key === "a") {
+          if (key === "a" || key === "arrowleft") {
             const newSelection = {
               worldIndex:
                 selection.worldIndex === 0
@@ -198,7 +198,7 @@ const useWASDSelectLevel = (selectedRecords) => {
               );
               if (elem) elem.focus();
             }, 10);
-          } else if (key === "d") {
+          } else if (key === "d" || key === "arrowright") {
             const newSelection = {
               worldIndex:
                 selection.worldIndex === MAX_WORLD_INDEX
@@ -215,7 +215,7 @@ const useWASDSelectLevel = (selectedRecords) => {
               if (elem) elem.focus();
             }, 10);
           } else {
-            if (key === "d" || key === "s") {
+            if (key === "d" || key === "s" || key === "arrowup" || key === "arrowdown") {
               return setLastAndFocus(ids[2]);
             } else {
               return setLastAndFocus(idToFocus);
